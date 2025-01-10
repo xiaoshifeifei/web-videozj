@@ -33,57 +33,565 @@
           label-align="left"
         >
           <a-row :gutter="1">
-            <a-col :span="4">
+            <a-col :span="3">
               <a-form-item field="contentType">
                 <a-select
                   v-model="formModel.contentType"
                   :options="contentTypeOptions"
+                  :style="{ width: '120px' }"
                   placeholder="所有账号"
                   allow-clear
                 />
               </a-form-item>
             </a-col>
-            <a-col :span="5">
-              <a-form-item field="content">
+            <a-col :span="3">
+              <a-form-item field="contentType">
                 <a-select
-                  v-model="formModel.content"
-                  :options="contentOptions"
-                  :style="{ width: '360px' }"
-                  placeholder="账号分组"
-                  multiple
-                  :max-tag-count="2"
+                  v-model="formModel.contentType"
+                  :options="contentTypeOptions"
+                  :style="{ width: '120px' }"
+                  placeholder="所有账号"
                   allow-clear
-                >
-                </a-select>
-              </a-form-item>
-            </a-col>
-            <a-col :span="5">
-              <a-form-item field="name">
-                <a-input-search
-                  :style="{ width: '320px' }"
-                  v-model="formModel.name"
-                  allow-clear
-                  placeholder="请输入"
                 />
               </a-form-item>
             </a-col>
+            <a-col :span="3">
+              <a-form-item field="contentType">
+                <a-select
+                  v-model="formModel.contentType"
+                  :options="contentTypeOptions"
+                  :style="{ width: '120px' }"
+                  placeholder="所有账号"
+                  allow-clear
+                />
+              </a-form-item>
+            </a-col>
+            <a-col :span="3">
+              <a-cascader
+                style="z-index: 2; position: relative"
+                :options="casOptions"
+                :default-value="['Shanghai']"
+                :style="{ width: '260px' }"
+                placeholder="Please select ..."
+                multiple
+              />
+            </a-col>
           </a-row>
         </a-form>
-        <div>
-          <a-space>
-            <a-button type="primary" class="myBtnR">
-              <template #icon>
-                <icon-apps />
-              </template>
-              <template #default>自动化</template>
-            </a-button>
-            <a-button type="primary" class="myBtnR">
-              <template #icon>
-                <icon-apps />
-              </template>
-              <template #default>分组</template>
-            </a-button>
-          </a-space>
+        <div class="myB">
+          <a-button
+            type="primary"
+            class="myBtnM"
+            :class="{ myBtnR: lr }"
+            @click="lr = true"
+          >
+            <template #default>列表模式</template>
+          </a-button>
+          <a-button
+            type="primary"
+            class="myBtnM"
+            :class="{ myBtnR: !lr }"
+            @click="lr = false"
+          >
+            <template #default>日历模式</template>
+          </a-button>
+        </div>
+      </div>
+      <div class="listBox">
+        <div class="boxLi">
+          <div class="confB">发布成功</div>
+          <div class="carB">
+            <div class="imgCar">
+              <img src="../../../assets/images/demo_cover.png" alt="" />
+              <icon-play-circle />
+            </div>
+            <div class="carRight">
+              <div class="title">演示视频（新建任务后将被删除）</div>
+              <div class="time">发布时间：2023-02-01 20:00:00</div>
+              <div class="ulBox">
+                <div class="liBox">
+                  <div class="titleLi">播放量</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">点赞数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">评论数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">分享数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">收藏数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+              </div>
+              <div class="imgBox">
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1005_15_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1009_19_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1001_11_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1008_18_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/10_10_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1002_12_11zon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottomContent">
+            <div class="shH"><span class="sSpan">.</span> 全部审核通过</div>
+            <div class="btmR">
+              <div class="textImg"><icon-find-replace /><span>查看</span></div>
+              <div class="textImg"><icon-bar-chart /><span>数据</span></div>
+              <div class="textImg"><icon-message /><span>评论</span></div>
+
+              <div class="textImg">
+                <a-space size="large">
+                  <a-dropdown
+                    @select="handleSelect"
+                    position="br"
+                    :popup-translate="[20, 15]"
+                  >
+                    <icon-more-vertical />
+                    <template #content>
+                      <a-doption disabled>删除任务</a-doption>
+                      <a-doption disabled>批量删除任务</a-doption>
+                      <a-doption :value="{ value: 'Option3' }" disabled
+                        >删除任务及视频</a-doption
+                      >
+                    </template>
+                  </a-dropdown>
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxLi">
+          <div class="confB">发布成功</div>
+          <div class="carB">
+            <div class="imgCar">
+              <img src="../../../assets/images/demo_cover.png" alt="" />
+              <icon-play-circle />
+            </div>
+            <div class="carRight">
+              <div class="title">演示视频（新建任务后将被删除）</div>
+              <div class="time">发布时间：2023-02-01 20:00:00</div>
+              <div class="ulBox">
+                <div class="liBox">
+                  <div class="titleLi">播放量</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">点赞数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">评论数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">分享数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">收藏数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+              </div>
+              <div class="imgBox">
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1005_15_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1009_19_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1001_11_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1008_18_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/10_10_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1002_12_11zon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottomContent">
+            <div class="shH"><span class="sSpan">.</span> 全部审核通过</div>
+            <div class="btmR">
+              <div class="textImg"><icon-find-replace /><span>查看</span></div>
+              <div class="textImg"><icon-bar-chart /><span>数据</span></div>
+              <div class="textImg"><icon-message /><span>评论</span></div>
+
+              <div class="textImg">
+                <a-space size="large">
+                  <a-dropdown
+                    @select="handleSelect"
+                    position="br"
+                    :popup-translate="[20, 15]"
+                  >
+                    <icon-more-vertical />
+                    <template #content>
+                      <a-doption disabled>删除任务</a-doption>
+                      <a-doption disabled>批量删除任务</a-doption>
+                      <a-doption :value="{ value: 'Option3' }" disabled
+                        >删除任务及视频</a-doption
+                      >
+                    </template>
+                  </a-dropdown>
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxLi">
+          <div class="confB">发布成功</div>
+          <div class="carB">
+            <div class="imgCar">
+              <img src="../../../assets/images/demo_cover.png" alt="" />
+              <icon-play-circle />
+            </div>
+            <div class="carRight">
+              <div class="title">演示视频（新建任务后将被删除）</div>
+              <div class="time">发布时间：2023-02-01 20:00:00</div>
+              <div class="ulBox">
+                <div class="liBox">
+                  <div class="titleLi">播放量</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">点赞数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">评论数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">分享数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">收藏数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+              </div>
+              <div class="imgBox">
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1005_15_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1009_19_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1001_11_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1008_18_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/10_10_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1002_12_11zon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottomContent">
+            <div class="shH"><span class="sSpan">.</span> 全部审核通过</div>
+            <div class="btmR">
+              <div class="textImg"><icon-find-replace /><span>查看</span></div>
+              <div class="textImg"><icon-bar-chart /><span>数据</span></div>
+              <div class="textImg"><icon-message /><span>评论</span></div>
+
+              <div class="textImg">
+                <a-space size="large">
+                  <a-dropdown
+                    @select="handleSelect"
+                    position="br"
+                    :popup-translate="[20, 15]"
+                  >
+                    <icon-more-vertical />
+                    <template #content>
+                      <a-doption disabled>删除任务</a-doption>
+                      <a-doption disabled>批量删除任务</a-doption>
+                      <a-doption :value="{ value: 'Option3' }" disabled
+                        >删除任务及视频</a-doption
+                      >
+                    </template>
+                  </a-dropdown>
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxLi">
+          <div class="confB">发布成功</div>
+          <div class="carB">
+            <div class="imgCar">
+              <img src="../../../assets/images/demo_cover.png" alt="" />
+              <icon-play-circle />
+            </div>
+            <div class="carRight">
+              <div class="title">演示视频（新建任务后将被删除）</div>
+              <div class="time">发布时间：2023-02-01 20:00:00</div>
+              <div class="ulBox">
+                <div class="liBox">
+                  <div class="titleLi">播放量</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">点赞数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">评论数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">分享数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">收藏数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+              </div>
+              <div class="imgBox">
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1005_15_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1009_19_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1001_11_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1008_18_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/10_10_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1002_12_11zon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottomContent">
+            <div class="shH"><span class="sSpan">.</span> 全部审核通过</div>
+            <div class="btmR">
+              <div class="textImg"><icon-find-replace /><span>查看</span></div>
+              <div class="textImg"><icon-bar-chart /><span>数据</span></div>
+              <div class="textImg"><icon-message /><span>评论</span></div>
+
+              <div class="textImg">
+                <a-space size="large">
+                  <a-dropdown
+                    @select="handleSelect"
+                    position="br"
+                    :popup-translate="[20, 15]"
+                  >
+                    <icon-more-vertical />
+                    <template #content>
+                      <a-doption disabled>删除任务</a-doption>
+                      <a-doption disabled>批量删除任务</a-doption>
+                      <a-doption :value="{ value: 'Option3' }" disabled
+                        >删除任务及视频</a-doption
+                      >
+                    </template>
+                  </a-dropdown>
+                </a-space>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxLi">
+          <div class="confB">发布成功</div>
+          <div class="carB">
+            <div class="imgCar">
+              <img src="../../../assets/images/demo_cover.png" alt="" />
+              <icon-play-circle />
+            </div>
+            <div class="carRight">
+              <div class="title">演示视频（新建任务后将被删除）</div>
+              <div class="time">发布时间：2023-02-01 20:00:00</div>
+              <div class="ulBox">
+                <div class="liBox">
+                  <div class="titleLi">播放量</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">点赞数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">评论数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">分享数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+                <div class="liBox">
+                  <div class="titleLi">收藏数</div>
+                  <div class="num">12,138</div>
+                  <div class="lue">--</div>
+                </div>
+              </div>
+              <div class="imgBox">
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1005_15_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1009_19_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1001_11_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1008_18_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/10_10_11zon.png"
+                  alt=""
+                />
+                <img
+                  class="imgU"
+                  src="../../../assets/images/1002_12_11zon.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottomContent">
+            <div class="shH"><span class="sSpan">.</span> 全部审核通过</div>
+            <div class="btmR">
+              <div class="textImg"><icon-find-replace /><span>查看</span></div>
+              <div class="textImg"><icon-bar-chart /><span>数据</span></div>
+              <div class="textImg"><icon-message /><span>评论</span></div>
+
+              <div class="textImg">
+                <a-space size="large">
+                  <a-dropdown
+                    @select="handleSelect"
+                    position="br"
+                    :popup-translate="[20, 15]"
+                  >
+                    <icon-more-vertical />
+                    <template #content>
+                      <a-doption disabled>删除任务</a-doption>
+                      <a-doption disabled>批量删除任务</a-doption>
+                      <a-doption :value="{ value: 'Option3' }" disabled
+                        >删除任务及视频</a-doption
+                      >
+                    </template>
+                  </a-dropdown>
+                </a-space>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -102,6 +610,7 @@ const generateFormModel = () => {
   };
 };
 const formModel = ref(generateFormModel());
+const lr = ref(true);
 const contentTypeOptions = computed(() => [
   {
     label: '所有账号',
@@ -135,7 +644,59 @@ const contentOptions = computed(() => [
     value: '4',
   },
 ]);
-contentOptions;
+const casOptions = [
+  {
+    value: 'beijing',
+    label: 'Beijing',
+    children: [
+      {
+        value: 'chaoyang',
+        label: 'ChaoYang',
+        children: [
+          {
+            value: 'datunli',
+            label: 'Datunli',
+          },
+        ],
+      },
+      {
+        value: 'haidian',
+        label: 'Haidian',
+      },
+      {
+        value: 'dongcheng',
+        label: 'Dongcheng',
+      },
+      {
+        value: 'xicheng',
+        label: 'Xicheng',
+        children: [
+          {
+            value: 'jinrongjie',
+            label: 'Jinrongjie',
+          },
+          {
+            value: 'tianqiao',
+            label: 'Tianqiao',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'shanghai',
+    label: 'Shanghai',
+    children: [
+      {
+        value: 'huangpu',
+        label: 'Huangpu',
+      },
+    ],
+  },
+];
+const handleSelect = (v) => {
+  console.log(v);
+};
 </script>
 
 <script lang="ts">
@@ -145,6 +706,23 @@ export default {
 </script>
 
 <style scoped lang="less">
+:deep(.arco-select-view-single),
+:deep(.arco-select-view-multiple),
+:deep(.arco-select-view-inner) {
+  border-radius: 25px !important;
+  padding-left: 10px;
+}
+// :deep(.arco-select-view-inner) {
+//   line-height: 35px !important;
+//   padding-left: 10px;
+// }
+
+// :deep(.arco-input-wrapper) {
+//   height: 40px !important;
+//   line-height: 40px !important;
+//   border-radius: 25px !important;
+//   padding-left: 10px;
+// }
 .container {
   width: 100%;
   height: calc(100vh - 64px);
@@ -208,31 +786,177 @@ export default {
   color: #333;
   display: flex;
   justify-content: space-between;
-  .myBtnR {
-    height: 40px;
-    background-color: #f0efff;
+  height: 80px;
+  .myBtnM {
+    height: 30px;
     padding: 0 19px;
-    border-radius: 12px;
-    color: #4a3aff;
+    border-radius: 25px;
+    color: #4e5969;
+    background-color: #ebebeb;
+  }
+  .myBtnR {
+    height: 30px;
+    background-color: #4a3aff;
+    padding: 0 19px;
+    border-radius: 25px;
+    color: #fff;
+  }
+  .myB {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #ebebeb;
+    height: 30px;
+    border-radius: 25px;
   }
 }
-:deep(.arco-select-view-single),
-:deep(.arco-select-view-multiple),
-:deep(.arco-select-view-inner) {
-  height: 40px !important;
-  border-radius: 25px !important;
-  line-height: 40px !important;
-  padding-left: 10px;
-}
-:deep(.arco-select-view-inner) {
-  line-height: 35px !important;
-  padding-left: 10px;
-}
+.listBox {
+  width: 1440px;
+  margin: 10px auto;
+  .boxLi {
+    box-shadow: 0 2px 8px #e1e0e0;
+    width: calc(50% - 8px);
+    background-color: #fff;
+    display: inline-block;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    vertical-align: top;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    .carB {
+      width: 100%;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: flex-start;
+      border-bottom: 1px solid #ebebeb;
+      .imgCar {
+        width: 100px;
+        position: relative;
+        img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        :deep(.arco-icon) {
+          color: #fff;
+          font-size: 30px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .carRight {
+        width: calc(100% - 100px);
+        height: 100%;
+        padding: 5px 20px 0;
+        .title {
+          width: 100%;
+          white-space: nowrap; /* 禁止换行 */
+          overflow: hidden; /* 超出部分隐藏 */
+          text-overflow: ellipsis; /* 显示省略号 */
+          font-size: 17px;
+          color: #333;
+          font-weight: 700;
+        }
+        .time {
+          width: 100%;
+          white-space: nowrap; /* 禁止换行 */
+          overflow: hidden; /* 超出部分隐藏 */
+          text-overflow: ellipsis; /* 显示省略号 */
+          margin-top: 15px;
+          font-size: 12px;
+          color: #666;
+        }
+        .ulBox {
+          width: 100%;
+          height: 65px;
+          margin-top: 15px;
+          .liBox {
+            width: 20%;
+            height: 100%;
+            display: inline-block;
+            vertical-align: top;
 
-:deep(.arco-input-wrapper) {
-  height: 40px !important;
-  line-height: 40px !important;
-  border-radius: 25px !important;
-  padding-left: 10px;
+            .titleLi {
+              font-size: 12px;
+              color: #999;
+            }
+            .num {
+              font-size: 20px;
+              font-weight: 700;
+              color: #333;
+              margin-top: 10px;
+            }
+            .lue {
+              font-size: 16px;
+              font-weight: 700;
+              color: #219653;
+            }
+          }
+        }
+        .imgBox {
+          width: 100%;
+          height: 20px;
+          margin-top: 20px;
+          .imgU {
+            width: 20px;
+            height: 20px;
+            border-radius: 25px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .confB {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 70px;
+      height: 22px;
+      line-height: 22px;
+      background-color: #f3faf0;
+      color: #6abf40;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 0 0 0 10px;
+    }
+    .bottomContent {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      .shH {
+        font-size: 12px;
+        color: #6abf40;
+        position: relative;
+        padding-left: 15px;
+        .sSpan {
+          font-size: 30px;
+          position: absolute;
+          left: 0px;
+          top: -10px;
+        }
+      }
+      .btmR {
+        display: flex;
+        justify-content: flex-start;
+        .textImg {
+          margin-left: 40px;
+          font-size: 14px;
+          color: #333;
+          cursor: pointer;
+        }
+        span {
+          font-size: 12px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .boxLi:nth-child(2n) {
+    margin: 0;
+  }
 }
 </style>

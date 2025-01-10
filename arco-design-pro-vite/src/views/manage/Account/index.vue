@@ -2011,7 +2011,7 @@ export default {
   .pxu {
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 60px;
+    // margin-bottom: 60px;
     height: 700px;
     .pxu-li {
       width: 190px;
@@ -2521,7 +2521,7 @@ export default {
 .myModalAddFen {
   .popContent {
     width: 100%;
-    height: 800px;
+    height: 700px;
     :deep(.arco-input-wrapper) {
       height: 40px !important;
       line-height: 40px !important;
@@ -2617,7 +2617,7 @@ export default {
   .pxu {
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 60px;
+    // margin-bottom: 60px;
     .pxu-li {
       width: 105px;
       height: 105px;
