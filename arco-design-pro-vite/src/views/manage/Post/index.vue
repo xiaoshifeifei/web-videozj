@@ -9,18 +9,85 @@
           </div>
           <div>
             <a-space>
-              <a-button type="primary" class="myBtn">
+              <!-- <a-button type="primary" class="myBtn" @click="handleClick">
                 <template #icon>
                   <icon-plus />
                 </template>
                 <template #default>新建发布任务</template>
-              </a-button>
-              <a-button class="myBtn">
-                <template #icon>
-                  <icon-more />
+              </a-button> -->
+
+              <a-trigger
+                position="br"
+                :popup-translate="[0, 10]"
+                auto-fit-position
+                :unmount-on-close="false"
+              >
+                <a-button class="myBtn">
+                  <template #icon>
+                    <icon-plus />
+                  </template>
+                  <template #default
+                    >新建发布任务 <icon-caret-down style="margin-left: 10px"
+                  /></template>
+                </a-button>
+                <template #content>
+                  <div class="demo-basic">
+                    <div>
+                      <a-button
+                        type="text"
+                        class="deBtn"
+                        @click="handleClick('video')"
+                        >发布新视频</a-button
+                      >
+                    </div>
+                    <div>
+                      <a-button
+                        type="text"
+                        class="deBtn"
+                        @click="handleClick('img')"
+                        >发布新照片</a-button
+                      >
+                    </div>
+                  </div>
                 </template>
-                <template #default>AI</template>
-              </a-button>
+              </a-trigger>
+              <a-trigger
+                position="br"
+                :popup-translate="[0, 10]"
+                auto-fit-position
+                :unmount-on-close="false"
+              >
+                <a-button class="myBtn">
+                  <template #icon>
+                    <icon-sun-fill />
+                  </template>
+                  <template #default
+                    >AI<icon-caret-down style="margin-left: 10px"
+                  /></template>
+                </a-button>
+                <template #content>
+                  <div class="demo-basic">
+                    <div>
+                      <a-button type="text" class="deBtn">AI 发布视频</a-button>
+                    </div>
+                    <div>
+                      <a-button type="text" class="deBtn"
+                        >批量发布视频</a-button
+                      >
+                    </div>
+                    <div>
+                      <a-button type="text" class="deBtn"
+                        >批量发布照片</a-button
+                      >
+                    </div>
+                    <div>
+                      <a-button type="text" class="deBtn"
+                        >关联已有视频</a-button
+                      >
+                    </div>
+                  </div>
+                </template>
+              </a-trigger>
             </a-space>
           </div>
         </div>
@@ -595,12 +662,19 @@
         </div>
       </div>
     </div>
+    <CreatedVideo
+      v-if="visible"
+      class="cv"
+      :paramsType="textType"
+      @changeClose="changeClose"
+    ></CreatedVideo>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, reactive, watch, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
+import CreatedVideo from './components/createdVideo.vue';
 const { t } = useI18n();
 const generateFormModel = () => {
   return {
@@ -609,6 +683,22 @@ const generateFormModel = () => {
     content: '',
   };
 };
+const visible = ref(false);
+const textType = ref('');
+
+const handleClick = (params) => {
+  textType.value = params || '';
+  console.log('textType.value ', textType.value);
+
+  visible.value = true;
+};
+const changeClose = () => {
+  visible.value = false;
+};
+const handleCancel = () => {
+  visible.value = false;
+};
+
 const formModel = ref(generateFormModel());
 const lr = ref(true);
 const contentTypeOptions = computed(() => [
@@ -957,6 +1047,27 @@ export default {
   }
   .boxLi:nth-child(2n) {
     margin: 0;
+  }
+}
+.cv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 3333;
+}
+
+.demo-basic {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  .deBtn {
+    width: 100%;
+    height: 45px;
+    text-align: left;
+    color: #000;
+    padding-right: 100px;
   }
 }
 </style>
