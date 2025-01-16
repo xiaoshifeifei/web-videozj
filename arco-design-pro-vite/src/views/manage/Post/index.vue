@@ -51,7 +51,7 @@
                   </div>
                 </template>
               </a-trigger>
-              <a-trigger
+              <!-- <a-trigger
                 position="br"
                 :popup-translate="[0, 10]"
                 auto-fit-position
@@ -87,7 +87,7 @@
                     </div>
                   </div>
                 </template>
-              </a-trigger>
+              </a-trigger> -->
             </a-space>
           </div>
         </div>
@@ -154,14 +154,14 @@
           >
             <template #default>列表模式</template>
           </a-button>
-          <a-button
+          <!-- <a-button
             type="primary"
             class="myBtnM"
             :class="{ myBtnR: !lr }"
             @click="lr = false"
           >
             <template #default>日历模式</template>
-          </a-button>
+          </a-button> -->
         </div>
       </div>
       <div class="listBox">
@@ -679,21 +679,14 @@ const generateFormModel = () => {
   };
 };
 const visible = ref(false);
-const textType = ref('');
 
 const handleClick = (params) => {
-  textType.value = params || '';
-  console.log('textType.value 打开上传视频页面', textType.value);
-  // visible.value = true;
   router.push({
     name: 'createdVideo',
+    query: {
+      dataParams: params,
+    },
   });
-};
-const changeClose = () => {
-  visible.value = false;
-};
-const handleCancel = () => {
-  visible.value = false;
 };
 
 const formModel = ref(generateFormModel());

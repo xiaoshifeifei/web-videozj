@@ -341,23 +341,76 @@
                       <div class="hFwe">发布时间</div>
                       <div class="gzTwo">
                         <div class="titleG">发布时间 </div>
-                        <a-space direction="vertical" size="mini">
-                          <a-radio-group v-model="positionTime" type="button">
-                            <a-radio value="left">立即发布</a-radio>
-                            <a-radio value="right">定时发布</a-radio>
-                          </a-radio-group>
-                        </a-space>
+                        <div class="zy">
+                          <a-space direction="vertical" size="mini">
+                            <a-radio-group v-model="positionTime" type="button">
+                              <a-radio value="left">立即发布</a-radio>
+                              <a-radio value="right">定时发布</a-radio>
+                            </a-radio-group>
+                          </a-space>
+                          <a-trigger
+                            position="tl"
+                            auto-fit-position
+                            :popup-translate="[0, -10]"
+                            trigger="click"
+                            :unmount-on-close="false"
+                          >
+                            <div class="fpZy">
+                              <icon-sun-fill />最优发布时间</div
+                            >
+                            <template #content>
+                              <div class="demo-basicFB">
+                                当前会员等级不支持，升级会员即刻解锁该能力<span
+                                  style="
+                                    margin-left: 5px;
+                                    color: #0672ff;
+                                    cursor: pointer;
+                                  "
+                                  >升级会员</span
+                                >
+                              </div>
+                            </template>
+                          </a-trigger>
+                        </div>
                         <template v-if="positionTime == 'right'">
                           <div class="titleG">请选择</div>
-                          <a-date-picker
-                            v-model="valuePicker"
-                            style="width: 220px; margin: 0 24px 24px 0"
-                            :show-time="true"
-                            format="YYYY-MM-DD hh:mm"
-                            @change="onChangePicker"
-                            @select="onSelectPicker"
-                            @ok="onOkPicker"
-                          />
+                          <a-trigger
+                            position="left"
+                            trigger="click"
+                            :popup-translate="[-10, 0]"
+                            auto-fit-position
+                            :unmount-on-close="false"
+                          >
+                            <a-date-picker
+                              v-model="valuePicker"
+                              style="width: 350px; margin: 0 24px 24px 0"
+                              :show-time="true"
+                              :disabledDate="
+                                (current) => dayjs(current).isBefore(dayjs())
+                              "
+                              format="YYYY-MM-DD hh:mm"
+                              @change="onChangePicker"
+                              @select="onSelectPicker"
+                              @ok="onOkPicker"
+                            />
+                            <template #content>
+                              <div class="demo-basicTime">
+                                可选择在一个月内的任意时间发布
+                              </div>
+                            </template>
+                          </a-trigger>
+                          <a-trigger
+                            position="top"
+                            auto-fit-position
+                            :unmount-on-close="false"
+                          >
+                            <div class="shiQ">时区: 亚洲 / 上海</div>
+                            <template #content>
+                              <div class="demo-basic">
+                                这是你当前账号所选时区，任务会在该时区对应时间点进行发布，如需修改时区请点击右上角的头像进行修改
+                              </div>
+                            </template>
+                          </a-trigger>
                         </template>
                       </div>
                     </div>
@@ -459,20 +512,19 @@
 </template>
   
 <script lang="ts" setup>
-import { computed, ref, reactive, watch, nextTick } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Message } from '@arco-design/web-vue';
 import VideoUpload from '../../../components/video/index.vue';
-import { FormInstance } from '@arco-design/web-vue/es/form';
-import { DatePicker } from '@arco-design/web-vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
+import dayjs from 'dayjs';
 
-defineProps({
-  paramsType: {
-    type: String,
-    default: '',
-  },
-});
+// defineProps({
+//   paramsType: {
+//     type: String,
+//     default: '',
+//   },
+// });
 
 const { t } = useI18n();
 
@@ -480,7 +532,15 @@ const match = ref('#matchingRules');
 const position = ref('left');
 const positionTime = ref('left');
 const valuePicker = ref(null);
+const paramsType = ref(null);
 const router = useRouter();
+const init = () => {
+  const queryS = router.currentRoute.value.query;
+  if (queryS && queryS.dataParams) {
+    paramsType.value = queryS.dataParams;
+  }
+};
+init();
 
 const tabList = ref([
   {
@@ -677,6 +737,10 @@ export default {
   height: calc(100vh - 64px);
   background-color: #f9f9f9;
   overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  z-index: 9999999;
   .top {
     width: 100%;
     height: 120px;
@@ -1379,11 +1443,13 @@ export default {
   .box {
     width: 100%;
     height: 100vh;
+    // height: calc(100vh - 64px);
     background-color: #f8f8f8;
     overflow: hidden;
     .boxContent {
       width: 1450px;
       height: 100vh;
+      // height: calc(100vh - 64px);
       overflow: hidden;
       background-color: skyblue;
       margin: auto;
@@ -1799,6 +1865,30 @@ export default {
                     padding-left: 20px;
                     margin: 20px 0;
                   }
+                  .shiQ {
+                    width: 150px;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    border-radius: 5px;
+                    background-color: #f5f7f9;
+                    cursor: pointer;
+                  }
+                  .zy {
+                    display: flex;
+                    justify-content: flex-start;
+                    height: 30px;
+                    line-height: 30px;
+                    .fpZy {
+                      margin-left: 20px;
+                      padding: 0 10px;
+                      border-radius: 5px;
+                      background-color: #f5f7f9;
+                      font-size: 12px;
+                      cursor: pointer;
+                      color: #333;
+                    }
+                  }
                   .popImg {
                     display: inline-block;
                     position: relative;
@@ -2068,9 +2158,30 @@ export default {
   }
 }
 .demo-basic {
-  background-color: #fff;
+  background-color: #000;
   border-radius: 4px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  color: #fff;
+  width: 380px;
+  padding: 10px;
+  border-radius: 5px;
+  line-height: 1.5;
+}
+.demo-basicTime {
+  background-color: #000;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1.5;
+}
+.demo-basicFB {
+  background-color: #fff;
+  padding: 30px 10px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  width: 280px;
+  line-height: 1.5;
 }
 .trigger-demo-translate {
   padding: 10px;
