@@ -25,6 +25,7 @@ import locale500 from '@/views/exception/500/locale/zh-CN';
 
 import localeAccount from '@/views/manage/Account/locale/zh-CN';
 import localeInteraction from '@/views/manage/Interaction/locale/zh-CN';
+import createdVideo from '@/views/manage/createdVideo/locale/zh-CN';
 import localePost from '@/views/manage/Post/locale/zh-CN';
 
 import localeUserInfo from '@/views/user/info/locale/zh-CN';
@@ -72,5 +73,6 @@ export default {
   ...localePost,
   ...localeUserInfo,
   ...localeUserSetting,
+  ...createdVideo,
   /** simple end */
 };

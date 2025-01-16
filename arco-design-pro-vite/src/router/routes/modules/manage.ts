@@ -42,6 +42,16 @@ const MANAGE: AppRouteRecordRaw = {
         roles: ['*'],
       },
     },
+    {
+      path: 'createdVideo',
+      name: 'createdVideo',
+      component: () => import('@/views/manage/createdVideo/index.vue'),
+      meta: {
+        locale: 'menu.manage.createdVideo',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
   ],
 };
 

@@ -349,6 +349,15 @@
                         </a-space>
                         <template v-if="positionTime == 'right'">
                           <div class="titleG">请选择</div>
+                          <a-date-picker
+                            v-model="valuePicker"
+                            style="width: 220px; margin: 0 24px 24px 0"
+                            :show-time="true"
+                            format="YYYY-MM-DD hh:mm"
+                            @change="onChangePicker"
+                            @select="onSelectPicker"
+                            @ok="onOkPicker"
+                          />
                         </template>
                       </div>
                     </div>
@@ -453,8 +462,10 @@
 import { computed, ref, reactive, watch, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Message } from '@arco-design/web-vue';
-import VideoUpload from '../../../../components/video/index.vue';
-import { useRouter } from 'vue-router';
+import VideoUpload from '../../../components/video/index.vue';
+import { FormInstance } from '@arco-design/web-vue/es/form';
+import { DatePicker } from '@arco-design/web-vue';
+import { RouterLink, useRouter } from 'vue-router';
 
 defineProps({
   paramsType: {
@@ -468,6 +479,7 @@ const { t } = useI18n();
 const match = ref('#matchingRules');
 const position = ref('left');
 const positionTime = ref('left');
+const valuePicker = ref(null);
 const router = useRouter();
 
 const tabList = ref([
@@ -484,6 +496,17 @@ const tabList = ref([
     title: '规则',
   },
 ]);
+function onSelectPicker(dateString, date) {
+  console.log('onSelectPicker', dateString, date);
+}
+
+function onChangePicker(dateString, date) {
+  console.log('onChangePicker: ', dateString, date);
+}
+
+function onOkPicker(dateString, date) {
+  console.log('onOkPicker: ', dateString, date);
+}
 const createdClick = () => {
   // 更新用户信息
   sessionStorage.setItem('myRouter', 'Account');
@@ -537,7 +560,7 @@ const LangOptions = computed(() => [
 const emit = defineEmits(['changeClose']);
 
 const handleCancelSetting = () => {
-  emit('changeClose');
+  router.go(-1);
 };
 
 const formModel = ref({

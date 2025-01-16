@@ -662,19 +662,14 @@
         </div>
       </div>
     </div>
-    <CreatedVideo
-      v-if="visible"
-      class="cv"
-      :paramsType="textType"
-      @changeClose="changeClose"
-    ></CreatedVideo>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, reactive, watch, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
-import CreatedVideo from './components/createdVideo.vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const { t } = useI18n();
 const generateFormModel = () => {
   return {
@@ -688,9 +683,11 @@ const textType = ref('');
 
 const handleClick = (params) => {
   textType.value = params || '';
-  console.log('textType.value ', textType.value);
-
-  visible.value = true;
+  console.log('textType.value 打开上传视频页面', textType.value);
+  // visible.value = true;
+  router.push({
+    name: 'createdVideo',
+  });
 };
 const changeClose = () => {
   visible.value = false;
