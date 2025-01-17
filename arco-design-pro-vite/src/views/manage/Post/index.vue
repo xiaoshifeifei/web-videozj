@@ -249,7 +249,7 @@
                 ><icon-message /><span>评论</span></div
               >
 
-              <div class="textImg">
+              <div class="textImg" @click.stop>
                 <a-space size="large">
                   <a-dropdown
                     @select="handleSelect"
@@ -354,7 +354,7 @@
                 ><icon-message /><span>评论</span></div
               >
 
-              <div class="textImg">
+              <div class="textImg" @click.stop>
                 <a-space size="large">
                   <a-dropdown
                     @select="handleSelect"
@@ -459,7 +459,7 @@
                 ><icon-message /><span>评论</span></div
               >
 
-              <div class="textImg">
+              <div class="textImg" @click.stop>
                 <a-space size="large">
                   <a-dropdown
                     @select="handleSelect"
@@ -564,7 +564,7 @@
                 ><icon-message /><span>评论</span></div
               >
 
-              <div class="textImg">
+              <div class="textImg" @click.stop>
                 <a-space size="large">
                   <a-dropdown
                     @select="handleSelect"
@@ -669,7 +669,7 @@
                 ><icon-message /><span>评论</span></div
               >
 
-              <div class="textImg">
+              <div class="textImg" @click.stop>
                 <a-space size="large">
                   <a-dropdown
                     @select="handleSelect"
@@ -1060,8 +1060,8 @@
                 <div class="qsRight qsRight1">
                   <div class="qsTi">详细数据</div>
                   <a-table
-                    :columns="columns"
-                    :data="datasss"
+                    :columns="(columns as any)"
+                    :data="(datasss as any)"
                     :scroll="scroll"
                   />
                 </div>
@@ -2121,6 +2121,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, reactive, watch, nextTick } from 'vue';
+import type { TableColumnData } from '@arco-design/web-vue/es/table/interface';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import chartA from './components/chartA.vue';
@@ -2140,7 +2141,7 @@ const generateFormModel = () => {
   };
 };
 const visible = ref(false);
-const columns = [
+const columns: any = ref([
   {
     title: 'Name',
     dataIndex: 'name',
@@ -2184,12 +2185,12 @@ const columns = [
     // fixed: 'right',
     width: 200,
   },
-];
-const scroll = {
+]);
+const scroll = ref({
   x: 1500,
   y: 280,
-};
-const datasss = ref([
+});
+const datasss: any = ref([
   {
     key: '1',
     name: 'Jane Doe',
@@ -2399,30 +2400,37 @@ const selectOptions = ref([
   {
     label: '总览',
     value: '1',
+    disabled: false,
   },
   {
     label: 'TikTok',
     value: '2',
+    disabled: false,
   },
   {
     label: 'YouTube',
     value: '3',
+    disabled: false,
   },
   {
     label: 'Facebook',
     value: '4',
+    disabled: false,
   },
   {
     label: 'Instagram',
     value: '5',
+    disabled: false,
   },
   {
     label: 'Threads',
     value: '6',
+    disabled: false,
   },
   {
     label: 'Pinterest',
     value: '7',
+    disabled: true,
   },
 ]);
 const chartShow = ref(true);
@@ -3270,7 +3278,7 @@ export default {
                     }
                   }
                   .imgPl {
-                    width: 360px;
+                    width: 280px;
                     display: block;
                     margin-left: 100px;
                   }
@@ -3727,7 +3735,7 @@ export default {
             }
           }
           .imgPl {
-            width: 360px;
+            width: 280px;
             display: block;
             margin-left: 100px;
           }
