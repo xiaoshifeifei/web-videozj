@@ -31,8 +31,10 @@ const useAppStore = defineStore('app', {
     // Change theme color
     toggleTheme(dark: boolean) {
       if (dark) {
-        this.theme = 'dark';
-        document.body.setAttribute('arco-theme', 'dark');
+        // this.theme = 'dark';
+        // document.body.setAttribute('arco-theme', 'dark');
+        this.theme = 'light';
+        document.body.removeAttribute('arco-theme');
       } else {
         this.theme = 'light';
         document.body.removeAttribute('arco-theme');
