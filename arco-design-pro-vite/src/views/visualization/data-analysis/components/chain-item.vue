@@ -106,7 +106,7 @@ const lineChartOptionsFactory = () => {
           showSymbol: false,
           smooth: true,
           lineStyle: {
-            color: '#165DFF',
+            color: '#3b74fa',
             width: 3,
           },
         },

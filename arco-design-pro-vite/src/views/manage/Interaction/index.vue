@@ -1743,7 +1743,7 @@ export default {
                       }
                     }
                     .xz {
-                      border: 2px solid #4a3aff;
+                      border: 2px solid #3b74fa;
                       box-shadow: border-box;
                     }
                     .v-li:nth-child(even) {
@@ -1786,18 +1786,18 @@ export default {
                       .ge {
                         width: 3px;
                         height: 15px;
-                        background-color: #4a3aff;
+                        background-color: #3b74fa;
                         margin-top: 22.5px;
                       }
                       .myBtn {
                         height: 32px;
                         width: 32px;
-                        background-color: #4a3aff;
+                        background-color: #3b74fa;
                         border-radius: 6px;
                         color: #fff;
                       }
                       .myBtn:hover {
-                        background-color: #6d60f7;
+                        background-color: #6a97ff;
                       }
                     }
                     .plLeftZ {
@@ -1951,13 +1951,13 @@ export default {
                     .myBtn {
                       width: 100px;
                       height: 40px;
-                      background-color: #4a3aff;
+                      background-color: #3b74fa;
                       padding: 0 25px;
                       border-radius: 8px;
                       color: #fff;
                     }
                     .myBtn:hover {
-                      background-color: #6d60f7;
+                      background-color: #6a97ff;
                     }
                   }
                   .contentP {
@@ -2036,12 +2036,12 @@ export default {
 
                           .myBtn {
                             height: 30px;
-                            background-color: #4a3aff;
+                            background-color: #3b74fa;
                             border-radius: 5px;
                             color: #fff;
                           }
                           .myBtn:hover {
-                            background-color: #6d60f7;
+                            background-color: #6a97ff;
                           }
                         }
                       }
@@ -2121,13 +2121,13 @@ export default {
         .myBtn {
           height: 35px;
           width: 35px;
-          background-color: #4a3aff;
+          background-color: #3b74fa;
           border-radius: 6px;
           color: #fff;
           margin-left: 15px;
         }
         .myBtn:hover {
-          background-color: #6d60f7;
+          background-color: #6a97ff;
         }
       }
     }
@@ -2237,18 +2237,18 @@ export default {
             .ge {
               width: 3px;
               height: 15px;
-              background-color: #4a3aff;
+              background-color: #3b74fa;
               margin-top: 22.5px;
             }
             .myBtn {
               height: 32px;
               width: 32px;
-              background-color: #4a3aff;
+              background-color: #3b74fa;
               border-radius: 6px;
               color: #fff;
             }
             .myBtn:hover {
-              background-color: #6d60f7;
+              background-color: #6a97ff;
             }
           }
           .plLeftZ {
@@ -2404,13 +2404,13 @@ export default {
           .myBtn {
             width: 100px;
             height: 40px;
-            background-color: #4a3aff;
+            background-color: #3b74fa;
             padding: 0 25px;
             border-radius: 8px;
             color: #fff;
           }
           .myBtn:hover {
-            background-color: #6d60f7;
+            background-color: #6a97ff;
           }
         }
         .contentP {
@@ -2489,12 +2489,12 @@ export default {
 
                 .myBtn {
                   height: 30px;
-                  background-color: #4a3aff;
+                  background-color: #3b74fa;
                   border-radius: 5px;
                   color: #fff;
                 }
                 .myBtn:hover {
-                  background-color: #6d60f7;
+                  background-color: #6a97ff;
                 }
               }
             }

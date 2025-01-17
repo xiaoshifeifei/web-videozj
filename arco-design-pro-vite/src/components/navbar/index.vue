@@ -69,7 +69,7 @@
           </template>
         </a-dropdown>
       </li> -->
-      <li>
+      <!-- <li>
         <a-tooltip
           :content="
             theme === 'light'
@@ -89,7 +89,7 @@
             </template>
           </a-button>
         </a-tooltip>
-      </li>
+      </li> -->
       <!-- <li>
         <a-tooltip :content="$t('settings.navbar.alerts')">
           <div class="message-box-trigger">
@@ -232,13 +232,7 @@
                 </div>
               </div>
             </a-doption>
-            <a-doption>
-              <!-- <a-space @click="$router.push({ name: 'Info' })">
-                <icon-user />
-                <span>
-                  {{ $t('messageBox.userCenter') }}
-                </span>
-              </a-space> -->
+            <!-- <a-doption>
               <div class="tu-d">
                 <div class="td-l">当前团队</div>
                 <div class="td-r">青蛙</div>
@@ -249,8 +243,8 @@
                 <div class="td-l">所属企业</div>
                 <div class="td-r">青蛙</div>
               </div>
-            </a-doption>
-            <a-doption>
+            </a-doption> -->
+            <!-- <a-doption>
               <div class="tu-d">
                 <div class="td-l">会员等级</div>
                 <div class="td-r"
@@ -267,23 +261,23 @@
                       width="22"
                       height="22"
                       rx="4"
-                      fill="#4A3AFF"
+                      fill="#3b74fa"
                     />
                     <path
                       d="M12.6995 6L8.43844 10.6554V6H5.86035V6.0045H5V6.8056H5.86032V15.6564H8.43846L17 6.0045L12.6995 6Z"
-                      fill="#4A3AFF"
+                      fill="#3b74fa"
                     />
                   </svg>
                   <span class="span1">升级</span>
                 </div>
               </div>
-            </a-doption>
-            <a-doption>
+            </a-doption> -->
+            <!-- <a-doption>
               <div class="tu-d">
                 <div class="td-l">有效期至</div>
                 <div class="td-r">2024-12-24 10:00:00</div>
               </div>
-            </a-doption>
+            </a-doption> -->
             <a-doption>
               <!-- <a-tooltip :content="$t('settings.language')">
                 <a-button
@@ -602,7 +596,7 @@ watch(
       transform: translateY(-2px);
     }
     .span1 {
-      color: #4a3aff;
+      color: #3b74fa;
       margin-left: 10px;
     }
   }

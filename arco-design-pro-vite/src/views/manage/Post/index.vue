@@ -9,13 +9,6 @@
           </div>
           <div>
             <a-space>
-              <!-- <a-button type="primary" class="myBtn" @click="handleClick">
-                <template #icon>
-                  <icon-plus />
-                </template>
-                <template #default>新建发布任务</template>
-              </a-button> -->
-
               <a-trigger
                 position="br"
                 :popup-translate="[0, 10]"
@@ -145,7 +138,7 @@
             </a-col>
           </a-row>
         </a-form>
-        <div class="myB">
+        <!-- <div class="myB">
           <a-button
             type="primary"
             class="myBtnM"
@@ -154,15 +147,8 @@
           >
             <template #default>列表模式</template>
           </a-button>
-          <!-- <a-button
-            type="primary"
-            class="myBtnM"
-            :class="{ myBtnR: !lr }"
-            @click="lr = false"
-          >
-            <template #default>日历模式</template>
-          </a-button> -->
-        </div>
+         
+        </div> -->
       </div>
       <div class="listBox">
         <div class="boxLi" @click="handleClickPop('2')">
@@ -1020,7 +1006,7 @@
                       style="
                         cursor: pointer;
                         background-color: #d9d6f8;
-                        color: #4a3aff;
+                        color: #3b74fa;
                       "
                       @click="chartShow = true"
                     />
@@ -1028,7 +1014,7 @@
                       style="
                         cursor: pointer;
                         background-color: #d9d6f8;
-                        color: #4a3aff;
+                        color: #3b74fa;
                       "
                       @click="chartShow = false"
                     />
@@ -2508,13 +2494,13 @@ export default {
       }
       .myBtn {
         height: 50px;
-        background-color: #4a3aff;
+        background-color: #3b74fa;
         padding: 0 25px;
         border-radius: 12px;
         color: #fff;
       }
       .myBtn:hover {
-        background-color: #6d60f7;
+        background-color: #6a97ff;
       }
     }
   }
@@ -2536,7 +2522,7 @@ export default {
   }
   .myBtnR {
     height: 30px;
-    background-color: #4a3aff;
+    background-color: #3b74fa;
     padding: 0 19px;
     border-radius: 25px;
     color: #fff;
@@ -2762,7 +2748,7 @@ export default {
       }
     }
     .draLeftLiB {
-      border: 3px solid #4a3aff;
+      border: 3px solid #3b74fa;
       box-sizing: border-box;
     }
   }
@@ -2790,7 +2776,7 @@ export default {
       cursor: pointer;
     }
     .see1 {
-      background-color: #4a3aff;
+      background-color: #3b74fa;
     }
     .replace {
       color: #fff;
@@ -3192,18 +3178,18 @@ export default {
                     .ge {
                       width: 3px;
                       height: 15px;
-                      background-color: #4a3aff;
+                      background-color: #3b74fa;
                       margin-top: 22.5px;
                     }
                     .myBtn {
                       height: 32px;
                       width: 32px;
-                      background-color: #4a3aff;
+                      background-color: #3b74fa;
                       border-radius: 6px;
                       color: #fff;
                     }
                     .myBtn:hover {
-                      background-color: #6d60f7;
+                      background-color: #6a97ff;
                     }
                   }
                   .plLeftZ {
@@ -3357,13 +3343,13 @@ export default {
                   .myBtn {
                     width: 100px;
                     height: 40px;
-                    background-color: #4a3aff;
+                    background-color: #3b74fa;
                     padding: 0 25px;
                     border-radius: 8px;
                     color: #fff;
                   }
                   .myBtn:hover {
-                    background-color: #6d60f7;
+                    background-color: #6a97ff;
                   }
                 }
                 .contentP {
@@ -3444,12 +3430,12 @@ export default {
 
                         .myBtn {
                           height: 30px;
-                          background-color: #4a3aff;
+                          background-color: #3b74fa;
                           border-radius: 5px;
                           color: #fff;
                         }
                         .myBtn:hover {
-                          background-color: #6d60f7;
+                          background-color: #6a97ff;
                         }
                       }
                     }
@@ -3533,13 +3519,13 @@ export default {
         .myBtn {
           height: 35px;
           width: 35px;
-          background-color: #4a3aff;
+          background-color: #3b74fa;
           border-radius: 6px;
           color: #fff;
           margin-left: 15px;
         }
         .myBtn:hover {
-          background-color: #6d60f7;
+          background-color: #6a97ff;
         }
       }
     }
@@ -3649,18 +3635,18 @@ export default {
             .ge {
               width: 3px;
               height: 15px;
-              background-color: #4a3aff;
+              background-color: #3b74fa;
               margin-top: 22.5px;
             }
             .myBtn {
               height: 32px;
               width: 32px;
-              background-color: #4a3aff;
+              background-color: #3b74fa;
               border-radius: 6px;
               color: #fff;
             }
             .myBtn:hover {
-              background-color: #6d60f7;
+              background-color: #6a97ff;
             }
           }
           .plLeftZ {
@@ -3816,13 +3802,13 @@ export default {
           .myBtn {
             width: 100px;
             height: 40px;
-            background-color: #4a3aff;
+            background-color: #3b74fa;
             padding: 0 25px;
             border-radius: 8px;
             color: #fff;
           }
           .myBtn:hover {
-            background-color: #6d60f7;
+            background-color: #6a97ff;
           }
         }
         .contentP {
@@ -3901,12 +3887,12 @@ export default {
 
                 .myBtn {
                   height: 30px;
-                  background-color: #4a3aff;
+                  background-color: #3b74fa;
                   border-radius: 5px;
                   color: #fff;
                 }
                 .myBtn:hover {
-                  background-color: #6d60f7;
+                  background-color: #6a97ff;
                 }
               }
             }

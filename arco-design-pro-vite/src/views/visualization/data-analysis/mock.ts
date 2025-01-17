@@ -44,7 +44,7 @@ setupMock({
           chartData: [
             // itemStyle for demo
             { name: '文本类', value: 25, itemStyle: { color: '#8D4EDA' } },
-            { name: '图文类', value: 35, itemStyle: { color: '#165DFF' } },
+            { name: '图文类', value: 35, itemStyle: { color: '#3b74fa' } },
             { name: '视频类', value: 40, itemStyle: { color: '#00B2FF' } },
           ],
         });

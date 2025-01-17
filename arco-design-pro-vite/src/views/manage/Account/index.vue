@@ -326,7 +326,7 @@
                 "
               >
                 企业下所有团队已授权账号的总和，可以升级会员获得更多额度
-                <span style="color: #4a3aff; cursor: pointer">立即升级</span>
+                <span style="color: #3b74fa; cursor: pointer">立即升级</span>
               </div>
             </template>
           </a-trigger>
@@ -924,7 +924,7 @@
                                 checked-value="no"
                                 unchecked-value="yes"
                                 checked-color="#F53F3F"
-                                unchecked-color="#4a3aff"
+                                unchecked-color="#3b74fa"
                                 disabled
                               />
                               <span class="span">默认</span>
@@ -1508,13 +1508,13 @@ export default {
       }
       .myBtn {
         height: 50px;
-        background-color: #4a3aff;
+        background-color: #3b74fa;
         padding: 0 25px;
         border-radius: 12px;
         color: #fff;
       }
       .myBtn:hover {
-        background-color: #6d60f7;
+        background-color: #6a97ff;
       }
     }
   }
@@ -1528,14 +1528,14 @@ export default {
   justify-content: space-between;
   .myBtnR {
     height: 40px;
-    background-color: #f0efff;
+    background-color: #eaf0fc;
     padding: 0 19px;
     border-radius: 25px;
-    color: #4a3aff;
+    color: #3b74fa;
   }
   .myBtnR:hover {
-    background-color: #f5f4fc;
-    color: #8c82f8;
+    background-color: #d9e4fa;
+    color: #3b74fa;
   }
 }
 .footerBox {
@@ -1710,13 +1710,13 @@ export default {
     .myBtn {
       width: 150px;
       height: 50px;
-      background-color: #4a3aff;
+      background-color: #3b74fa;
       padding: 0 25px;
       border-radius: 12px;
       color: #fff;
     }
     .myBtn:hover {
-      background-color: #6d60f7;
+      background-color: #6a97ff;
     }
     .myBtn1 {
       width: 150px;
@@ -1752,7 +1752,7 @@ export default {
       display: inline-block;
       margin: 0 0 20px 40px;
       border-radius: 10px;
-      border: 3px solid #165dff;
+      border: 3px solid #3b74fa;
       position: relative;
       background-color: #f2f2f2;
       img {
@@ -1787,13 +1787,13 @@ export default {
     .myBtn {
       width: 120px;
       height: 40px;
-      background-color: #4a3aff;
+      background-color: #3b74fa;
       padding: 0 25px;
       border-radius: 10px;
       color: #fff;
     }
     .myBtn:hover {
-      background-color: #6d60f7;
+      background-color: #6a97ff;
     }
     .myBtn1 {
       width: 120px;
@@ -1870,7 +1870,7 @@ export default {
           position: absolute;
           right: 0px;
           bottom: 0px;
-          background-color: #4a3aff;
+          background-color: #3b74fa;
           font-family: Phui bold;
           display: flex;
           justify-content: center;
@@ -1976,13 +1976,13 @@ export default {
     .myBtn {
       width: 150px;
       height: 50px;
-      background-color: #4a3aff;
+      background-color: #3b74fa;
       padding: 0 25px;
       border-radius: 12px;
       color: #fff;
     }
     .myBtn:hover {
-      background-color: #6d60f7;
+      background-color: #6a97ff;
     }
     .myBtn1 {
       width: 150px;
@@ -2019,7 +2019,7 @@ export default {
       display: inline-block;
       margin: 0 0 20px 40px;
       border-radius: 10px;
-      border: 2px dashed #165dff;
+      border: 2px dashed #3b74fa;
       cursor: pointer;
       .myBtn {
         width: 100%;
@@ -2078,7 +2078,7 @@ export default {
           font-size: 12px;
           border-radius: 25px;
           margin: 50px auto 0;
-          background-color: #4a3aff;
+          background-color: #3b74fa;
         }
         .myBtn:hover {
           background-color: #5c4efc;
@@ -2138,7 +2138,7 @@ export default {
       display: inline-block;
       margin: 0 0 20px 40px;
       border-radius: 10px;
-      border: 2px dashed #165dff;
+      border: 2px dashed #3b74fa;
       cursor: pointer;
       .myBtn {
         width: 100%;
@@ -2156,7 +2156,7 @@ export default {
     margin-left: 40px;
     text-align: center;
     padding-top: 20px;
-    color: #4a3aff;
+    color: #3b74fa;
     font-size: 12px;
   }
 }
@@ -2487,13 +2487,13 @@ export default {
             .myBtn {
               width: 100px;
               height: 40px;
-              background-color: #4a3aff;
+              background-color: #3b74fa;
               padding: 0 25px;
               border-radius: 10px;
               color: #fff;
             }
             .myBtn:hover {
-              background-color: #6d60f7;
+              background-color: #6a97ff;
             }
             .myBtn1 {
               width: 100px;
@@ -2564,7 +2564,7 @@ export default {
     font-size: 12px;
     border-radius: 10px;
     margin: 50px auto 0;
-    background-color: #4a3aff;
+    background-color: #3b74fa;
   }
   .myBtn:hover {
     background-color: #5c4efc;
@@ -2582,13 +2582,13 @@ export default {
     .myBtn {
       width: 100px;
       height: 40px;
-      background-color: #4a3aff;
+      background-color: #3b74fa;
       padding: 0 25px;
       border-radius: 12px;
       color: #fff;
     }
     .myBtn:hover {
-      background-color: #6d60f7;
+      background-color: #6a97ff;
     }
     .myBtn1 {
       width: 100px;
@@ -2624,7 +2624,7 @@ export default {
       display: inline-block;
       margin: 0 0 20px 40px;
       border-radius: 10px;
-      border: 3px solid #165dff;
+      border: 3px solid #3b74fa;
       position: relative;
       svg {
         width: 62px;

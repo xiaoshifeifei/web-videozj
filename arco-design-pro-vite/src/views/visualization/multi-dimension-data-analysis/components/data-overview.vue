@@ -124,7 +124,7 @@ const renderData = computed(() => [
     prefix: {
       icon: 'icon-heart',
       background: isDark.value ? '#354276' : '#E8F3FF',
-      iconColor: isDark.value ? '#4A7FF7' : '#165DFF',
+      iconColor: isDark.value ? '#4A7FF7' : '#3b74fa',
     },
   },
   {
