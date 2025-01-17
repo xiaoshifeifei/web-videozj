@@ -693,7 +693,7 @@
       </div>
     </div>
     <a-drawer
-      :width="950"
+      :width="1200"
       :visible="visiblePop"
       @ok="handleOkPop"
       @cancel="handleCancelPop"
@@ -957,90 +957,597 @@
           </template>
           <template v-if="visibleIcon == '2'">
             <div style="width: 100%; height: 12px"></div>
-            <div class="menuBox">
-              <a-tabs
-                default-active-key="2"
-                style="
-                  width: calc(100% - 170px);
-                  color: #333;
-                  font-size: 16px;
-                  margin-top: 10px;
-                "
-              >
-                <a-tab-pane
-                  :key="item.value"
-                  :title="item.label"
-                  v-for="item in selectOptions"
+            <div class="draRightZs">
+              <div class="menuBox">
+                <a-tabs
+                  default-active-key="1"
+                  style="
+                    width: calc(100% - 170px);
+                    color: #333;
+                    font-size: 16px;
+                    margin-top: 10px;
+                  "
                 >
-                  {{ item.value }}
-                </a-tab-pane>
-              </a-tabs>
-              <a-select
-                v-model="formModel.contentType"
-                :options="contentTypeOptions"
-                style="width: 130px; height: 34px; margin: 13px 20px 0 10px"
-                placeholder="所有账号"
-              />
-            </div>
-            <div class="bfBox">
-              <div class="bdpNum">
-                <div class="bdpTitle"> 播放量 </div>
-                <div class="bNums"> 12.138</div>
-                <div class="dd">--</div>
+                  <a-tab-pane
+                    :key="item.value"
+                    :title="item.label"
+                    v-for="item in selectOptions"
+                  >
+                    {{ item.value }}
+                  </a-tab-pane>
+                </a-tabs>
+                <a-select
+                  v-model="formModel.contentType"
+                  :options="contentTypeOptions"
+                  style="width: 130px; height: 34px; margin: 13px 20px 0 10px"
+                  placeholder="所有账号"
+                />
               </div>
-              <div class="bdpNum">
-                <div class="bdpTitle"> 点赞数 </div>
-                <div class="bNums"> 12.138</div>
-                <div class="dd">--</div>
+              <div class="bfBox">
+                <div class="bdpNum">
+                  <div class="bdpTitle"> 播放量 </div>
+                  <div class="bNums"> 12.138</div>
+                  <div class="dd">--</div>
+                </div>
+                <div class="bdpNum">
+                  <div class="bdpTitle"> 点赞数 </div>
+                  <div class="bNums"> 12.138</div>
+                  <div class="dd">--</div>
+                </div>
+                <div class="bdpNum">
+                  <div class="bdpTitle"> 评论数 </div>
+                  <div class="bNums"> 12.138</div>
+                  <div class="dd">--</div>
+                </div>
+                <div class="bdpNum">
+                  <div class="bdpTitle"> 分享数 </div>
+                  <div class="bNums"> 12.138</div>
+                  <div class="dd">--</div>
+                </div>
+                <div class="bdpNum">
+                  <div class="bdpTitle"> 收藏数 </div>
+                  <div class="bNums"> 12.138</div>
+                  <div class="dd">--</div>
+                </div>
               </div>
-              <div class="bdpNum">
-                <div class="bdpTitle"> 评论数 </div>
-                <div class="bNums"> 12.138</div>
-                <div class="dd">--</div>
+              <div class="qsDb">
+                <div class="qsLeft">
+                  <div class="qsTi">播放占比</div>
+                  <chartB v-show="chartShow" />
+                  <chartA v-show="!chartShow" />
+                  <div class="btnCha">
+                    <icon-bar-chart
+                      style="
+                        cursor: pointer;
+                        background-color: #d9d6f8;
+                        color: #4a3aff;
+                      "
+                      @click="chartShow = true"
+                    />
+                    <icon-clock-circle
+                      style="
+                        cursor: pointer;
+                        background-color: #d9d6f8;
+                        color: #4a3aff;
+                      "
+                      @click="chartShow = false"
+                    />
+                  </div>
+                </div>
+                <div class="qsRight">
+                  <div class="qsTi">趋势对比</div>
+                  <chartC />
+                </div>
               </div>
-              <div class="bdpNum">
-                <div class="bdpTitle"> 分享数 </div>
-                <div class="bNums"> 12.138</div>
-                <div class="dd">--</div>
+              <div class="qsDb">
+                <div class="qsRight qsRight1">
+                  <div class="qsTi">趋势对比</div>
+                  <div class="searchSelect"
+                    ><a-select
+                      v-model="formModel.contentType"
+                      :options="contentTypeOptions"
+                      style="width: 130px; height: 34px"
+                      placeholder="所有账号" /><a-select
+                      v-model="formModel.contentType"
+                      :options="contentTypeOptions"
+                      style="width: 130px; height: 34px"
+                      placeholder="所有账号"
+                  /></div>
+                  <chartC />
+                </div>
               </div>
-              <div class="bdpNum">
-                <div class="bdpTitle"> 收藏数 </div>
-                <div class="bNums"> 12.138</div>
-                <div class="dd">--</div>
-              </div>
-            </div>
-            <div class="qsDb">
-              <div class="qsLeft">
-                <div class="qsTi">播放占比</div>
-                <chartB v-show="chartShow" />
-                <chartA v-show="!chartShow" />
-                <div class="btnCha">
-                  <icon-bar-chart
-                    style="
-                      cursor: pointer;
-                      background-color: #d9d6f8;
-                      color: #4a3aff;
-                    "
-                    @click="chartShow = true"
-                  />
-                  <icon-clock-circle
-                    style="
-                      cursor: pointer;
-                      background-color: #d9d6f8;
-                      color: #4a3aff;
-                    "
-                    @click="chartShow = false"
+              <div class="qsDb">
+                <div class="qsRight qsRight1">
+                  <div class="qsTi">详细数据</div>
+                  <a-table
+                    :columns="columns"
+                    :data="datasss"
+                    :scroll="scroll"
                   />
                 </div>
               </div>
-              <div class="qsRight">
-                <div class="qsTi">趋势对比</div>
-                <chartC />
-                <div>111</div>
+            </div>
+          </template>
+          <template v-if="visibleIcon == '3'">
+            <div style="width: 100%; height: 12px"></div>
+            <div class="myBot">
+              <div class="boxContent-R">
+                <div class="contentTop">
+                  <div class="menuBox">
+                    <a-menu
+                      mode="horizontal"
+                      :default-selected-keys="['TikTok']"
+                    >
+                      <a-menu-item
+                        v-for="item in selectOptions"
+                        :key="item.label"
+                        :disabled="item.disabled"
+                      >
+                        <span v-if="!item.disabled">
+                          {{ item.label }}
+                        </span>
+                        <a-trigger
+                          v-else
+                          position="top"
+                          auto-fit-position
+                          :unmount-on-close="false"
+                          :popup-translate="[0, -10]"
+                        >
+                          <span>{{ item.label }}</span>
+                          <template #content>
+                            <div
+                              style="
+                                background: rgba(0, 0, 0, 0.8);
+                                box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                                padding: 10px 20px;
+                                color: #fff;
+                                border-radius: 5px;
+                              "
+                            >
+                              该媒体暂不支持评论
+                            </div>
+                          </template>
+                        </a-trigger>
+                      </a-menu-item>
+                    </a-menu>
+                    <a-select
+                      v-model="formModel.contentType"
+                      :options="contentTypeOptions"
+                      placeholder="所有账号"
+                    />
+                  </div>
+                  <div class="videoBox">
+                    <div class="vR">
+                      <div class="pl-top">
+                        <div class="pl-left">
+                          <div class="plLeftT">
+                            <a-space>
+                              <a-trigger
+                                position="top"
+                                :popup-translate="[0, -10]"
+                                auto-fit-position
+                                :unmount-on-close="false"
+                              >
+                                <a-button
+                                  class="myBtn"
+                                  @click="handleClickSetting"
+                                >
+                                  <template #icon>
+                                    <icon-play-circle-fill size="24" />
+                                  </template>
+                                </a-button>
+                                <template #content>
+                                  <div
+                                    style="
+                                      background: rgba(0, 0, 0, 0.8);
+                                      box-shadow: 0 2px 8px 0
+                                        rgba(0, 0, 0, 0.15);
+                                      padding: 10px 20px;
+                                      color: #fff;
+                                      border-radius: 5px;
+                                    "
+                                  >
+                                    查看视频
+                                  </div>
+                                </template>
+                              </a-trigger>
+                            </a-space>
+                            <div class="ge"></div>
+                            <a-space>
+                              <a-trigger
+                                position="top"
+                                :popup-translate="[0, -10]"
+                                auto-fit-position
+                                :unmount-on-close="false"
+                              >
+                                <a-button class="myBtn" @click="handleClickZ">
+                                  <template #icon>
+                                    <icon-bar-chart size="24" />
+                                  </template>
+                                </a-button>
+                                <template #content>
+                                  <div
+                                    style="
+                                      background: rgba(0, 0, 0, 0.8);
+                                      box-shadow: 0 2px 8px 0
+                                        rgba(0, 0, 0, 0.15);
+                                      padding: 10px 20px;
+                                      color: #fff;
+                                      border-radius: 5px;
+                                    "
+                                  >
+                                    查看数据
+                                  </div>
+                                </template>
+                              </a-trigger>
+                            </a-space>
+                          </div>
+                          <div class="plLeftZ">
+                            <div class="title1">评论数</div>
+                            <div class="num1">4966</div>
+                          </div>
+                          <div class="plLeftR">
+                            <div class="title1">评论数</div>
+                            <div class="num1">39.38%</div>
+                          </div>
+                        </div>
+                        <div class="pl-right">
+                          <div class="title">评论舆情</div>
+                          <div class="jdt">
+                            <icon-thumb-up-fill
+                              class="up-icon"
+                              :rotate="90"
+                              :size="20"
+                            />
+
+                            <div class="fux"> 负向 </div>
+                            <a-progress
+                              :percent="0.8"
+                              :stroke-width="20"
+                              :show-text="false"
+                              :animation="true"
+                              color="#FFB200"
+                              track-color="#0672FF"
+                              :style="{ width: '50%', marginTop: '5px' }"
+                            />
+                            <div class="zxi"> 正向 </div>
+                            <icon-thumb-down-fill
+                              class="down-icon"
+                              :rotate="90"
+                              :size="20"
+                            />
+                          </div>
+                          <img
+                            class="imgPl"
+                            src="../../../assets/images/pl.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div class="pl-bottom">
+                        <div class="myCon">
+                          <div class="myConL">添加评论</div>
+                          <div class="myConR">
+                            <a-button shape="round" size="mini" disabled>
+                              <template #icon>
+                                <icon-refresh />
+                              </template>
+                              <template #default>立即更新</template>
+                            </a-button>
+                            <a-button
+                              shape="round"
+                              size="mini"
+                              style="margin-left: 10px"
+                            >
+                              <template #icon>
+                                <icon-sync />
+                              </template>
+                              <template #default>自动回复</template>
+                            </a-button>
+                          </div>
+                        </div>
+                        <a-textarea
+                          placeholder="Please enter something"
+                          :auto-size="{
+                            minRows: 4,
+                            maxRows: 50,
+                          }"
+                          style="
+                            margin: 10px 0;
+                            border: none;
+                            border-radius: 10px;
+                          "
+                        />
+                        <div class="bt">
+                          <a-space>
+                            <a-button type="primary" class="myBtn">
+                              <template #default>发送</template>
+                            </a-button>
+                          </a-space>
+                        </div>
+                        <div class="myCon">
+                          <div class="myConL">评论列表</div>
+
+                          <div class="myConR fy">
+                            <a-space>
+                              <a-switch size="small" />
+                              智能翻译
+                            </a-space>
+                            <div>
+                              <a-trigger
+                                position="top"
+                                :popup-translate="[0, -15]"
+                                auto-fit-position
+                                :unmount-on-close="false"
+                              >
+                                <img
+                                  width="20"
+                                  style="
+                                    margin: 0 10px 0 5px;
+                                    vertical-align: middle;
+                                    transform: translateY(-3px);
+                                  "
+                                  src="../../../assets/images/1101_21_11zon.png"
+                                  alt=""
+                                />
+                                <template #content>
+                                  <div
+                                    style="
+                                      background-color: #1d2129;
+                                      height: 50px;
+                                      line-height: 50px;
+                                      box-shadow: 0 2px 8px 0
+                                        rgba(0, 0, 0, 0.15);
+                                      padding: 0 15px;
+                                      color: #fff;
+                                    "
+                                  >
+                                    开启后评论将自动翻译为系统的默认语言，可点击右上角头像，修改系统语言
+                                  </div>
+                                </template>
+                              </a-trigger>
+                            </div>
+                            <a-select
+                              v-model="formModel.contentType"
+                              :options="contentTypeOptions"
+                              placeholder="所有账号"
+                            />
+                          </div>
+                        </div>
+                        <div class="plAll">
+                          <a-space>
+                            <a-button type="outline" class="myBtn myBtn1">
+                              <template #default>所有评论</template>
+                            </a-button>
+                          </a-space>
+                          <a-space style="margin-left: 10px">
+                            <a-button type="outline" class="myBtn">
+                              <template #default>我的评论</template>
+                            </a-button>
+                          </a-space>
+                        </div>
+                        <div class="contentP">
+                          <div class="contentText">
+                            <img
+                              class="activeImg"
+                              src="../../../assets/images/8_8_11zon.png"
+                              alt=""
+                            />
+                            <div class="conRg">
+                              <div class="title"
+                                >海绵宝宝 <span class="zuz">作者</span></div
+                              >
+                              <div class="content"
+                                >Through UPMee, I can share my creations with
+                                more people and convey my thoughts and
+                                values</div
+                              >
+
+                              <div class="data">
+                                <div class="dataL">2024-11-06</div>
+                                <div class="dataR">
+                                  <div
+                                    ><icon-heart-fill style="cursor: pointer" />
+                                    100</div
+                                  >
+                                  <div
+                                    style="
+                                      cursor: pointer;
+                                      margin: 0 40px;
+                                      color: #333;
+                                    "
+                                    @click="hf = !hf"
+                                    ><icon-message /> 回复</div
+                                  >
+                                  <div style="cursor: pointer"
+                                    ><icon-delete /> 删除</div
+                                  >
+                                </div>
+                              </div>
+                              <div v-if="hf" class="dataTe">
+                                <a-textarea
+                                  placeholder="Please enter something"
+                                  :auto-size="{
+                                    minRows: 2,
+                                    maxRows: 50,
+                                  }"
+                                  style="
+                                    margin: 10px 0;
+                                    border: none;
+                                    border-radius: 10px;
+                                  "
+                                />
+                                <div class="textRt">
+                                  <a-space>
+                                    <a-button
+                                      type="dashed"
+                                      @click="hf = !hf"
+                                      class="myBtn1"
+                                    >
+                                      <template #default>取消</template>
+                                    </a-button>
+                                  </a-space>
+                                  <a-space style="margin-left: 10px">
+                                    <a-button
+                                      type="outline"
+                                      @click="hf = !hf"
+                                      class="myBtn"
+                                    >
+                                      <template #default>发送</template>
+                                    </a-button>
+                                  </a-space>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="contentText">
+                            <img
+                              class="activeImg"
+                              src="../../../assets/images/8_8_11zon.png"
+                              alt=""
+                            />
+                            <div class="conRg">
+                              <div class="title">海绵宝宝</div>
+                              <div class="content"
+                                >Through UPMee, I can share my creations with
+                                more people and convey my thoughts and
+                                values</div
+                              >
+                              <div class="data">
+                                <div class="dataL">2024-11-06</div>
+                                <div class="dataR">
+                                  <div
+                                    ><icon-heart-fill style="cursor: pointer" />
+                                    100</div
+                                  >
+                                  <div
+                                    style="
+                                      cursor: pointer;
+                                      margin: 0 40px;
+                                      color: #333;
+                                    "
+                                    ><icon-message /> 回复</div
+                                  >
+                                  <div style="cursor: pointer"
+                                    ><icon-delete /> 删除</div
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="contentText">
+                            <img
+                              class="activeImg"
+                              src="../../../assets/images/8_8_11zon.png"
+                              alt=""
+                            />
+                            <div class="conRg">
+                              <div class="title">海绵宝宝</div>
+                              <div class="content"
+                                >Through UPMee, I can share my creations with
+                                more people and convey my thoughts and
+                                values</div
+                              >
+                              <div class="data">
+                                <div class="dataL">2024-11-06</div>
+                                <div class="dataR">
+                                  <div
+                                    ><icon-heart-fill style="cursor: pointer" />
+                                    100</div
+                                  >
+                                  <div
+                                    style="
+                                      cursor: pointer;
+                                      margin: 0 40px;
+                                      color: #333;
+                                    "
+                                    ><icon-message /> 回复</div
+                                  >
+                                  <div style="cursor: pointer"
+                                    ><icon-delete /> 删除</div
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="contentText">
+                            <img
+                              class="activeImg"
+                              src="../../../assets/images/8_8_11zon.png"
+                              alt=""
+                            />
+                            <div class="conRg">
+                              <div class="title">海绵宝宝</div>
+                              <div class="content"
+                                >Through UPMee, I can share my creations with
+                                more people and convey my thoughts and
+                                values</div
+                              >
+                              <div class="data">
+                                <div class="dataL">2024-11-06</div>
+                                <div class="dataR">
+                                  <div
+                                    ><icon-heart-fill style="cursor: pointer" />
+                                    100</div
+                                  >
+                                  <div
+                                    style="
+                                      cursor: pointer;
+                                      margin: 0 40px;
+                                      color: #333;
+                                    "
+                                    ><icon-message /> 回复</div
+                                  >
+                                  <div style="cursor: pointer"
+                                    ><icon-delete /> 删除</div
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="contentText">
+                            <img
+                              class="activeImg"
+                              src="../../../assets/images/8_8_11zon.png"
+                              alt=""
+                            />
+                            <div class="conRg">
+                              <div class="title">海绵宝宝</div>
+                              <div class="content"
+                                >Through UPMee, I can share my creations with
+                                more people and convey my thoughts and
+                                values</div
+                              >
+                              <div class="data">
+                                <div class="dataL">2024-11-06</div>
+                                <div class="dataR">
+                                  <div
+                                    ><icon-heart-fill style="cursor: pointer" />
+                                    100</div
+                                  >
+                                  <div
+                                    style="
+                                      cursor: pointer;
+                                      margin: 0 40px;
+                                      color: #333;
+                                    "
+                                    ><icon-message /> 回复</div
+                                  >
+                                  <div style="cursor: pointer"
+                                    ><icon-delete /> 删除</div
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
-          <template v-if="visibleIcon == '3'"> 3</template>
         </div>
       </div>
     </a-drawer>
@@ -1081,6 +1588,534 @@
         </div>
       </div>
     </a-modal>
+    <a-modal
+      v-model:visible="visibleS"
+      :footer="false"
+      title-align="start"
+      @ok="handleOkS"
+      @cancel="handleCancelS"
+      hide-title
+      ok-text="下一步"
+      width="1000px"
+      class="myModalSetting"
+      :bodyStyle="{ padding: 0 }"
+      fullscreen
+    >
+      <div class="box">
+        <div class="top">
+          <a-button type="dashed" class="btnTop" @click="handleCancelS">
+            <template #icon>
+              <icon-undo />
+            </template>
+            <template #default>返回</template>
+          </a-button>
+        </div>
+        <div class="vid">
+          <iframe
+            tabindex="0"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+            class="isIframe"
+            id="my-iframe"
+            :src="isVideo"
+          ></iframe>
+        </div>
+      </div>
+    </a-modal>
+    <a-modal
+      v-model:visible="visibleZ"
+      :footer="false"
+      title-align="start"
+      @ok="handleOkZ"
+      @cancel="handleCancelZ"
+      hide-title
+      width="900px"
+      :bodyStyle="{ padding: 0 }"
+      class="myModalZ"
+    >
+      <div class="topB">
+        <div class="boxTop">
+          <div class="title">夜幕降临</div>
+          <div v-if="paramsTrue" class="btn"
+            ><a-space>
+              <a-trigger
+                position="top"
+                :popup-translate="[0, -10]"
+                auto-fit-position
+                :unmount-on-close="false"
+              >
+                <a-button class="myBtn" @click="handleClickS">
+                  <template #icon>
+                    <icon-play-circle-fill size="24" />
+                  </template>
+                </a-button>
+                <template #content>
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.8);
+                      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                      padding: 10px 20px;
+                      color: #fff;
+                      border-radius: 5px;
+                    "
+                  >
+                    查看视频
+                  </div>
+                </template>
+              </a-trigger>
+            </a-space>
+            <a-space>
+              <a-trigger
+                position="top"
+                :popup-translate="[0, -10]"
+                auto-fit-position
+                :unmount-on-close="false"
+              >
+                <a-button class="myBtn" @click="paramsTrue = false">
+                  <template #icon>
+                    <icon-list size="24" />
+                  </template>
+                </a-button>
+                <template #content>
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.8);
+                      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                      padding: 10px 20px;
+                      color: #fff;
+                      border-radius: 5px;
+                    "
+                  >
+                    查看评论
+                  </div>
+                </template>
+              </a-trigger>
+            </a-space>
+          </div>
+        </div>
+        <div class="box" v-if="paramsTrue">
+          <div class="boxLi">
+            <div class="li">
+              <div class="title">播放量</div>
+              <div class="content">--</div>
+              <div class="bottom">--</div>
+            </div>
+            <div class="li">
+              <div class="title">点赞数</div>
+              <div class="content">--</div>
+              <div class="bottom">--</div>
+            </div>
+            <div class="li">
+              <div class="title">评论数</div>
+              <div class="content">--</div>
+              <div class="bottom">--</div>
+            </div>
+            <div class="li">
+              <div class="title">分享数</div>
+              <div class="content">--</div>
+              <div class="bottom">--</div>
+            </div>
+            <div class="li">
+              <div class="title">收藏数</div>
+              <div class="content">--</div>
+              <div class="bottom">--</div>
+            </div>
+          </div>
+          <div class="qus qum">
+            <div class="title">趋势对比</div>
+            <div class="select">
+              <a-select
+                v-model="formModel.contentType"
+                :options="contentTypeOptions"
+                placeholder="所有账号"
+              />
+              <a-select
+                v-model="formModel.contentType"
+                :options="contentTypeOptions"
+                placeholder="所有账号"
+              />
+            </div>
+            <div class="emptyS">
+              <a-empty style="background-color: #fff">
+                <template #image>
+                  <img
+                    style="width: 200px; height: 200px"
+                    src="https://cdn.dreamera.cn/upmee_pics/overview_emptyRq.svg"
+                    alt=""
+                  />
+                </template>
+                暂无数据
+              </a-empty>
+            </div>
+          </div>
+          <div class="qus">
+            <div class="title">详细数据</div>
+            <div class="emptyS">
+              <a-empty style="background-color: #fff">
+                <template #image>
+                  <img
+                    style="width: 200px; height: 200px"
+                    src="https://cdn.dreamera.cn/upmee_pics/overview_emptyRq.svg"
+                    alt=""
+                  />
+                </template>
+                暂无数据
+              </a-empty>
+            </div>
+          </div>
+        </div>
+        <div class="vR" v-else>
+          <div class="pl-top">
+            <div class="pl-left">
+              <div class="plLeftT">
+                <a-space>
+                  <a-trigger
+                    position="top"
+                    :popup-translate="[0, -10]"
+                    auto-fit-position
+                    :unmount-on-close="false"
+                  >
+                    <a-button class="myBtn" @click="handleClickS">
+                      <template #icon>
+                        <icon-play-circle-fill size="24" />
+                      </template>
+                    </a-button>
+                    <template #content>
+                      <div
+                        style="
+                          background: rgba(0, 0, 0, 0.8);
+                          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                          padding: 10px 20px;
+                          color: #fff;
+                          border-radius: 5px;
+                        "
+                      >
+                        查看视频
+                      </div>
+                    </template>
+                  </a-trigger>
+                </a-space>
+                <div class="ge"></div>
+                <a-space>
+                  <a-trigger
+                    position="top"
+                    :popup-translate="[0, -10]"
+                    auto-fit-position
+                    :unmount-on-close="false"
+                  >
+                    <a-button class="myBtn" @click="paramsTrue = true">
+                      <template #icon>
+                        <icon-bar-chart size="24" />
+                      </template>
+                    </a-button>
+                    <template #content>
+                      <div
+                        style="
+                          background: rgba(0, 0, 0, 0.8);
+                          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                          padding: 10px 20px;
+                          color: #fff;
+                          border-radius: 5px;
+                        "
+                      >
+                        查看数据
+                      </div>
+                    </template>
+                  </a-trigger>
+                </a-space>
+              </div>
+              <div class="plLeftZ">
+                <div class="title1">评论数</div>
+                <div class="num1">4966</div>
+              </div>
+              <div class="plLeftR">
+                <div class="title1">评论数</div>
+                <div class="num1">39.38%</div>
+              </div>
+            </div>
+            <div class="pl-right">
+              <div class="title">评论舆情</div>
+              <div class="jdt">
+                <icon-thumb-up-fill class="up-icon" :rotate="90" :size="20" />
+
+                <div class="fux"> 负向 </div>
+                <a-progress
+                  :percent="0.8"
+                  :stroke-width="20"
+                  :show-text="false"
+                  :animation="true"
+                  color="#FFB200"
+                  track-color="#0672FF"
+                  :style="{ width: '50%', marginTop: '5px' }"
+                />
+                <div class="zxi"> 正向 </div>
+                <icon-thumb-down-fill
+                  class="down-icon"
+                  :rotate="90"
+                  :size="20"
+                />
+              </div>
+              <img class="imgPl" src="../../../assets/images/pl.png" alt="" />
+            </div>
+          </div>
+          <div class="pl-bottom">
+            <div class="myCon">
+              <div class="myConL">添加评论</div>
+              <div class="myConR">
+                <a-button shape="round" size="mini" disabled>
+                  <template #icon>
+                    <icon-refresh />
+                  </template>
+                  <template #default>立即更新</template>
+                </a-button>
+                <a-button shape="round" size="mini" style="margin-left: 10px">
+                  <template #icon>
+                    <icon-sync />
+                  </template>
+                  <template #default>自动回复</template>
+                </a-button>
+              </div>
+            </div>
+            <a-textarea
+              placeholder="Please enter something"
+              :auto-size="{
+                minRows: 4,
+                maxRows: 50,
+              }"
+              style="margin: 10px 0; border: none; border-radius: 10px"
+            />
+            <div class="bt">
+              <a-space>
+                <a-button type="primary" class="myBtn">
+                  <template #default>发送</template>
+                </a-button>
+              </a-space>
+            </div>
+            <div class="myCon">
+              <div class="myConL">评论列表</div>
+
+              <div class="myConR fy">
+                <a-space>
+                  <a-switch size="small" />
+                  智能翻译
+                </a-space>
+                <div>
+                  <a-trigger
+                    position="top"
+                    :popup-translate="[0, -15]"
+                    auto-fit-position
+                    :unmount-on-close="false"
+                  >
+                    <img
+                      width="20"
+                      style="
+                        margin: 0 10px 0 5px;
+                        vertical-align: middle;
+                        transform: translateY(-3px);
+                      "
+                      src="../../../assets/images/1101_21_11zon.png"
+                      alt=""
+                    />
+                    <template #content>
+                      <div
+                        style="
+                          background-color: #1d2129;
+                          height: 50px;
+                          line-height: 50px;
+                          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                          padding: 0 15px;
+                          color: #fff;
+                        "
+                      >
+                        开启后评论将自动翻译为系统的默认语言，可点击右上角头像，修改系统语言
+                      </div>
+                    </template>
+                  </a-trigger>
+                </div>
+                <a-select
+                  v-model="formModel.contentType"
+                  :options="contentTypeOptions"
+                  placeholder="所有账号"
+                />
+              </div>
+            </div>
+            <div class="plAll">
+              <a-space>
+                <a-button type="outline" class="myBtn myBtn1">
+                  <template #default>所有评论</template>
+                </a-button>
+              </a-space>
+              <a-space style="margin-left: 10px">
+                <a-button type="outline" class="myBtn">
+                  <template #default>我的评论</template>
+                </a-button>
+              </a-space>
+            </div>
+            <div class="contentP">
+              <div class="contentText">
+                <img
+                  class="activeImg"
+                  src="../../../assets/images/8_8_11zon.png"
+                  alt=""
+                />
+                <div class="conRg">
+                  <div class="title"
+                    >海绵宝宝 <span class="zuz">作者</span></div
+                  >
+                  <div class="content"
+                    >Through UPMee, I can share my creations with more people
+                    and convey my thoughts and values</div
+                  >
+
+                  <div class="data">
+                    <div class="dataL">2024-11-06</div>
+                    <div class="dataR">
+                      <div><icon-heart-fill style="cursor: pointer" /> 100</div>
+                      <div
+                        style="cursor: pointer; margin: 0 40px; color: #333"
+                        @click="hf = !hf"
+                        ><icon-message /> 回复</div
+                      >
+                      <div style="cursor: pointer"><icon-delete /> 删除</div>
+                    </div>
+                  </div>
+                  <div v-if="hf" class="dataTe">
+                    <a-textarea
+                      placeholder="Please enter something"
+                      :auto-size="{
+                        minRows: 2,
+                        maxRows: 50,
+                      }"
+                      style="margin: 10px 0; border: none; border-radius: 10px"
+                    />
+                    <div class="textRt">
+                      <a-space>
+                        <a-button
+                          type="dashed"
+                          @click="hf = !hf"
+                          class="myBtn1"
+                        >
+                          <template #default>取消</template>
+                        </a-button>
+                      </a-space>
+                      <a-space style="margin-left: 10px">
+                        <a-button
+                          type="outline"
+                          @click="hf = !hf"
+                          class="myBtn"
+                        >
+                          <template #default>发送</template>
+                        </a-button>
+                      </a-space>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentText">
+                <img
+                  class="activeImg"
+                  src="../../../assets/images/8_8_11zon.png"
+                  alt=""
+                />
+                <div class="conRg">
+                  <div class="title">海绵宝宝</div>
+                  <div class="content"
+                    >Through UPMee, I can share my creations with more people
+                    and convey my thoughts and values</div
+                  >
+                  <div class="data">
+                    <div class="dataL">2024-11-06</div>
+                    <div class="dataR">
+                      <div><icon-heart-fill style="cursor: pointer" /> 100</div>
+                      <div style="cursor: pointer; margin: 0 40px; color: #333"
+                        ><icon-message /> 回复</div
+                      >
+                      <div style="cursor: pointer"><icon-delete /> 删除</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentText">
+                <img
+                  class="activeImg"
+                  src="../../../assets/images/8_8_11zon.png"
+                  alt=""
+                />
+                <div class="conRg">
+                  <div class="title">海绵宝宝</div>
+                  <div class="content"
+                    >Through UPMee, I can share my creations with more people
+                    and convey my thoughts and values</div
+                  >
+                  <div class="data">
+                    <div class="dataL">2024-11-06</div>
+                    <div class="dataR">
+                      <div><icon-heart-fill style="cursor: pointer" /> 100</div>
+                      <div style="cursor: pointer; margin: 0 40px; color: #333"
+                        ><icon-message /> 回复</div
+                      >
+                      <div style="cursor: pointer"><icon-delete /> 删除</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentText">
+                <img
+                  class="activeImg"
+                  src="../../../assets/images/8_8_11zon.png"
+                  alt=""
+                />
+                <div class="conRg">
+                  <div class="title">海绵宝宝</div>
+                  <div class="content"
+                    >Through UPMee, I can share my creations with more people
+                    and convey my thoughts and values</div
+                  >
+                  <div class="data">
+                    <div class="dataL">2024-11-06</div>
+                    <div class="dataR">
+                      <div><icon-heart-fill style="cursor: pointer" /> 100</div>
+                      <div style="cursor: pointer; margin: 0 40px; color: #333"
+                        ><icon-message /> 回复</div
+                      >
+                      <div style="cursor: pointer"><icon-delete /> 删除</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentText">
+                <img
+                  class="activeImg"
+                  src="../../../assets/images/8_8_11zon.png"
+                  alt=""
+                />
+                <div class="conRg">
+                  <div class="title">海绵宝宝</div>
+                  <div class="content"
+                    >Through UPMee, I can share my creations with more people
+                    and convey my thoughts and values</div
+                  >
+                  <div class="data">
+                    <div class="dataL">2024-11-06</div>
+                    <div class="dataR">
+                      <div><icon-heart-fill style="cursor: pointer" /> 100</div>
+                      <div style="cursor: pointer; margin: 0 40px; color: #333"
+                        ><icon-message /> 回复</div
+                      >
+                      <div style="cursor: pointer"><icon-delete /> 删除</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100%; height: 80px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a-modal>
   </div>
 </template>
 
@@ -1093,6 +2128,8 @@ import chartB from './components/chartB.vue';
 import chartC from './components/chartC.vue';
 import * as echarts from 'echarts';
 const isVideo = ref('https://cdn.dreamera.cn/upmee_video/demo_video.mp4');
+const selectedIndex = ref(1);
+const paramsTrue = ref(true);
 const router = useRouter();
 const { t } = useI18n();
 const generateFormModel = () => {
@@ -1103,6 +2140,114 @@ const generateFormModel = () => {
   };
 };
 const visible = ref(false);
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    fixed: 'left',
+    width: 140,
+  },
+  {
+    title: 'Salary',
+    dataIndex: 'salary',
+    width: 100,
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    width: 160,
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    // fixed: 'right',
+    width: 200,
+  },
+  {
+    title: 'Name1',
+    dataIndex: 'name1',
+    width: 140,
+  },
+  {
+    title: 'Salary1',
+    dataIndex: 'salary1',
+    width: 100,
+  },
+  {
+    title: 'Address1',
+    dataIndex: 'address1',
+    width: 160,
+  },
+  {
+    title: 'Email1',
+    dataIndex: 'email1',
+    // fixed: 'right',
+    width: 200,
+  },
+];
+const scroll = {
+  x: 1500,
+  y: 280,
+};
+const datasss = ref([
+  {
+    key: '1',
+    name: 'Jane Doe',
+    name1: 'Jane Doe',
+    salary: 23000,
+    salary1: 23000,
+    address: '32 Park Road, London',
+    address1: '32 Park Road, London',
+    email: 'jane.doe@example.com',
+    email1: 'jane.doe@example.com',
+    expand: 'Expand Content',
+    expand1: 'Expand Content',
+  },
+  {
+    key: '2',
+    name: 'Alisa Ross',
+    salary: 25000,
+    address: '35 Park Road, London',
+    email: 'alisa.ross@example.com',
+    name1: 'Alisa Ross',
+    salary1: 25000,
+    address1: '35 Park Road, London',
+    email1: 'alisa.ross@example.com',
+  },
+  {
+    key: '3',
+    name: 'Kevin Sandra',
+    salary: 22000,
+    address: '31 Park Road, London',
+    email: 'kevin.sandra@example.com',
+    name1: 'Kevin Sandra',
+    salary1: 22000,
+    address1: '31 Park Road, London',
+    email1: 'kevin.sandra@example.com',
+  },
+  {
+    key: '4',
+    name: 'Ed Hellen',
+    salary: 17000,
+    address: '42 Park Road, London',
+    email: 'ed.hellen@example.com',
+    name1: 'Ed Hellen',
+    salary1: 17000,
+    address1: '42 Park Road, London',
+    email1: 'ed.hellen@example.com',
+  },
+  {
+    key: '5',
+    name: 'William Smith',
+    salary: 27000,
+    address: '62 Park Road, London',
+    email: 'william.smith@example.com',
+    name1: 'William Smith',
+    salary1: 27000,
+    address1: '62 Park Road, London',
+    email1: 'william.smith@example.com',
+  },
+]);
 
 const visiblePop = ref(false);
 
@@ -1139,6 +2284,31 @@ const handleClick = (params) => {
     },
   });
 };
+const visibleS = ref(false);
+
+const handleClickS = () => {
+  visibleS.value = true;
+};
+const handleOkS = () => {
+  visibleS.value = false;
+};
+const handleCancelS = () => {
+  visibleS.value = false;
+};
+
+const visibleZ = ref(false);
+
+const handleClickZ = () => {
+  visibleZ.value = true;
+};
+const handleOkZ = () => {
+  visibleZ.value = false;
+};
+const handleCancelZ = () => {
+  visibleZ.value = false;
+};
+
+const hf = ref(false);
 
 const formModel = ref(generateFormModel());
 const lr = ref(true);
@@ -1228,32 +2398,31 @@ const casOptions = [
 const selectOptions = ref([
   {
     label: '总览',
-    value: 'zl',
+    value: '1',
   },
   {
     label: 'TikTok',
-    value: 'TikTok',
+    value: '2',
   },
   {
     label: 'YouTube',
-    value: 'YouTube',
+    value: '3',
   },
   {
     label: 'Facebook',
-    value: 'Facebook',
+    value: '4',
   },
   {
     label: 'Instagram',
-    value: 'Instagram',
+    value: '5',
   },
   {
     label: 'Threads',
-    value: 'Threads',
+    value: '6',
   },
   {
     label: 'Pinterest',
-    value: 'Pinterest',
-    disabled: true,
+    value: '7',
   },
 ]);
 const chartShow = ref(true);
@@ -1818,98 +2987,469 @@ export default {
         }
       }
     }
-    .menuBox {
-      width: calc(100% - 12px);
-      border-radius: 10px;
-      color: #000;
-      background-color: #fff;
-      height: 60px;
-      display: flex;
-      justify-content: space-between;
-      box-shadow: 0 0 10px #e7e7e7;
-      :deep(.arco-tabs-nav) {
-        color: #222;
-        font-size: 22px;
-        font-weight: 700 !important;
+    .draRightZs {
+      width: 100%;
+      height: calc(100% - 12px);
+      overflow-y: scroll;
+      scrollbar-width: none;
+      .menuBox {
+        width: calc(100% - 12px);
+        border-radius: 10px;
+        color: #000;
+        background-color: #fff;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0 0 10px #e7e7e7;
+        :deep(.arco-tabs-nav) {
+          color: #222;
+          font-size: 22px;
+          font-weight: 700 !important;
+        }
+        :deep(.arco-tabs-tab:hover) {
+          font-weight: 700 !important;
+        }
+        :deep(.arco-tabs-tab-active) {
+          font-weight: 700 !important;
+        }
+        :deep(.arco-tabs-tab-active:hover) {
+          font-weight: 700 !important;
+        }
       }
-      :deep(.arco-tabs-tab:hover) {
-        font-weight: 700 !important;
+      .bfBox {
+        width: calc(100% - 12px);
+        display: flex;
+        justify-content: space-between;
+        margin: 12px 0;
+        .bdpNum {
+          width: 18.7%;
+          padding: 16px;
+          background-color: #fff;
+          box-shadow: 0 0 10px #e7e7e7;
+          border-radius: 10px;
+          .bdpTitle {
+            color: #666;
+            font-size: 16px;
+            text-align: left;
+          }
+          .bNums {
+            font-size: 20px;
+            color: #333;
+            font-weight: 700;
+            margin: 5px 0 10px;
+            text-align: left;
+          }
+          .dd {
+            border-radius: 25px;
+            height: 20px;
+            font-size: 20px;
+            color: #000;
+            background-color: rgba(93, 163, 123, 0.2);
+            text-align: center;
+            width: 50px;
+            line-height: 18px;
+          }
+        }
       }
-      :deep(.arco-tabs-tab-active) {
-        font-weight: 700 !important;
-      }
-      :deep(.arco-tabs-tab-active:hover) {
-        font-weight: 700 !important;
-      }
-    }
-    .bfBox {
-      width: calc(100% - 12px);
-      display: flex;
-      justify-content: space-between;
-      margin: 12px 0;
-      .bdpNum {
-        width: 18.7%;
+      .qsDb {
+        width: calc(100% - 12px);
         padding: 16px;
         background-color: #fff;
         box-shadow: 0 0 10px #e7e7e7;
+        display: flex;
+        justify-content: space-between;
         border-radius: 10px;
-        .bdpTitle {
-          color: #666;
-          font-size: 16px;
-          text-align: left;
+        margin-bottom: 12px;
+        .qsLeft {
+          width: 35%;
+          .qsTi {
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+          }
+          .btnCha {
+            width: 55px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f1f6fc;
+            margin: 20px auto 0;
+            display: flex;
+            justify-content: space-between;
+          }
         }
-        .bNums {
-          font-size: 20px;
-          color: #333;
-          font-weight: 700;
-          margin: 5px 0 10px;
-          text-align: left;
+        .qsRight {
+          width: 60%;
+          .qsTi {
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+          }
+          .searchSelect {
+            width: 100%;
+            height: 34px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
         }
-        .dd {
-          border-radius: 25px;
-          height: 20px;
-          font-size: 20px;
-          color: #000;
-          background-color: rgba(93, 163, 123, 0.2);
-          text-align: center;
-          width: 50px;
-          line-height: 18px;
+        .qsRight1 {
+          width: 100%;
         }
       }
     }
-    .qsDb {
-      width: calc(100% - 12px);
-      padding: 16px;
-      background-color: #fff;
-      box-shadow: 0 0 10px #e7e7e7;
-      display: flex;
-      justify-content: space-between;
-      border-radius: 10px;
-      .qsLeft {
-        width: 35%;
-        .qsTi {
-          color: #000;
-          font-size: 16px;
-          font-weight: 700;
-          margin-bottom: 20px;
-        }
-        .btnCha {
-          width: 55px;
-          padding: 10px;
-          border-radius: 5px;
-          background-color: #f1f6fc;
-          margin: 20px auto 0;
-          display: flex;
-          justify-content: space-between;
-        }
-      }
-      .qsRight {
-        width: 60%;
-        .qsTi {
-          color: #000;
-          font-size: 16px;
-          font-weight: 700;
-          margin-bottom: 20px;
+    .myBot {
+      width: 100%;
+      height: 100%;
+      height: calc(100% - 12px);
+      overflow-y: scroll;
+      scrollbar-width: none;
+      .boxContent-R {
+        width: calc(100% - 12px);
+        height: 100%;
+        background-color: #f8f8f8;
+        position: relative;
+        .contentTop {
+          width: calc(100% - 16px);
+          height: calc(100% - 16px);
+
+          padding-top: 16px;
+          margin-left: 16px;
+          .menuBox {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            justify-content: space-between;
+            box-shadow: 0 1px 6px #0000000d;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            :deep(.arco-menu-inner) {
+              height: 60px;
+              width: calc(100% - 150px);
+            }
+
+            :deep(.arco-menu-selected-label) {
+              width: 16px;
+              bottom: 0;
+              height: 4px;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            :deep(.arco-select-view-single) {
+              width: 135px;
+              height: 34px;
+              border: 1px solid rgb(224, 224, 224);
+              margin-top: 13px;
+              margin-right: 12px;
+              border-radius: 25px;
+              background-color: #fff;
+            }
+          }
+          .videoBox {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            .vR {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              overflow-y: scroll;
+              scrollbar-width: none;
+              border-radius: 10px 10px 0 0;
+              .pl-top {
+                width: 100%;
+                height: 312px;
+                display: flex;
+                justify-content: space-between;
+                .pl-left {
+                  width: 180px;
+                  height: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  flex-direction: column;
+                  .plLeftT {
+                    width: 100%;
+                    border-radius: 10px;
+                    background-color: #fff;
+                    height: 60px;
+                    display: flex;
+                    justify-content: space-evenly;
+                    flex-direction: row;
+                    .ge {
+                      width: 3px;
+                      height: 15px;
+                      background-color: #4a3aff;
+                      margin-top: 22.5px;
+                    }
+                    .myBtn {
+                      height: 32px;
+                      width: 32px;
+                      background-color: #4a3aff;
+                      border-radius: 6px;
+                      color: #fff;
+                    }
+                    .myBtn:hover {
+                      background-color: #6d60f7;
+                    }
+                  }
+                  .plLeftZ {
+                    width: 100%;
+                    border-radius: 10px;
+                    background-color: #fff;
+                    height: 110px;
+                    padding: 24px;
+                    .title1 {
+                      font-size: 16px;
+                      color: #999;
+                    }
+                    .num1 {
+                      color: #333;
+                      font-size: 30px;
+                    }
+                  }
+                  .plLeftR {
+                    width: 100%;
+                    border-radius: 10px;
+                    background-color: #fff;
+                    height: 110px;
+                    padding: 24px;
+                    .title1 {
+                      font-size: 16px;
+                      color: #999;
+                    }
+                    .num1 {
+                      color: #333;
+                      font-size: 30px;
+                    }
+                  }
+                }
+                .pl-right {
+                  width: calc(100% - 196px);
+                  height: 100%;
+                  background-color: #fff;
+                  border-radius: 10px;
+                  padding: 16px 24px;
+                  position: relative;
+                  .title {
+                    font-size: 16px;
+                    color: #333;
+                    font-weight: 700;
+                  }
+                  .jdt {
+                    position: absolute;
+                    top: 130px;
+                    left: -40px;
+                    width: 200px;
+                    height: 30px;
+                    margin-top: 20px;
+                    transform: rotate(90deg); /* 旋转90度 */
+                    line-height: 30px;
+                    .fux {
+                      display: inline-block;
+                      color: rgb(255, 0, 132);
+                      font-size: 12px;
+                      transform: translateY(-4px) rotate(270deg);
+                    }
+                    .zxi {
+                      display: inline-block;
+                      color: #0672ff;
+                      font-size: 12px;
+                      transform: translateY(-4px) rotate(270deg);
+                    }
+                    .up-icon {
+                      color: rgb(255, 0, 132);
+                    }
+                    .down-icon {
+                      color: #0672ff;
+                    }
+                  }
+                  .imgPl {
+                    width: 360px;
+                    display: block;
+                    margin-left: 100px;
+                  }
+                }
+              }
+              .pl-bottom {
+                margin-top: 16px;
+                width: 100%;
+                min-height: 550px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 25px 15px;
+                .myCon {
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+                  height: 32px;
+                  line-height: 32px;
+                  font-size: 12px;
+                  .myConL {
+                    font-size: 14px;
+                    color: #333;
+                    font-weight: 700;
+                  }
+                  .fy {
+                    display: flex;
+                    justify-content: flex-end;
+                    color: #333;
+                    font-size: 14px;
+
+                    :deep(.arco-select-view-single) {
+                      width: 120px;
+                      height: 30px;
+                      line-height: 30px;
+                      border: none;
+                      background-color: #fff;
+                    }
+                  }
+                }
+                .plAll {
+                  width: 100%;
+                  display: flex;
+                  justify-content: flex-start;
+                  margin-top: 10px;
+                  .myBtn {
+                    width: 100px;
+                    height: 35px;
+                    line-height: 35px;
+                    padding: 0 25px;
+                    border-radius: 5px;
+                    border: 1px solid #e6e6e6;
+                    color: #333;
+                    font-size: 14px;
+                  }
+                  .myBtn:hover {
+                    background-color: #ebf3ff;
+                    border: 1px solid #388eff;
+                    color: #388eff;
+                  }
+                  .myBtn1 {
+                    background-color: #ebf3ff;
+                    border: 1px solid #388eff;
+                    color: #388eff;
+                  }
+                }
+                :deep(.arco-textarea) {
+                  border: 1px solid #dee0e3;
+                  background-color: #fff;
+                  border-radius: 10px;
+                  height: 180px;
+                }
+                .bt {
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-bottom: 20px;
+                  .myBtn {
+                    width: 100px;
+                    height: 40px;
+                    background-color: #4a3aff;
+                    padding: 0 25px;
+                    border-radius: 8px;
+                    color: #fff;
+                  }
+                  .myBtn:hover {
+                    background-color: #6d60f7;
+                  }
+                }
+                .contentP {
+                  width: 100%;
+                  margin-top: 20px;
+                  height: 600px;
+                  overflow: hidden auto;
+                  padding: 20px 0 50px 0;
+                  scrollbar-width: none; /* 隐藏滚动条 */
+                  .contentText {
+                    width: 100%;
+                    margin-bottom: 50px;
+                    display: flex;
+                    justify-content: flex-start;
+                    .activeImg {
+                      margin-right: 12px;
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 25px;
+                    }
+                    .conRg {
+                      width: calc(100% - 52px);
+                      padding: 0 10px 0 0;
+                      .title {
+                        text-align: left;
+                        font-size: 17px;
+                        color: #333;
+                        font-weight: 700;
+                        .zuz {
+                          display: inline-block;
+                          background-color: #ebf3ff;
+                          border-radius: 5px;
+                          color: #338bff;
+                          font-size: 12px;
+                          margin-left: 10px;
+                          height: 30px;
+                          line-height: 30px;
+                          padding: 0 10px;
+                        }
+                      }
+                      .content {
+                        text-align: left;
+                        padding: 12px 0;
+                        min-height: 20px;
+                        max-height: 80px;
+                        display: block;
+                        overflow: hidden auto;
+                        font-size: 14px;
+                        color: #1d2129;
+                      }
+                      .data {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 20px;
+                        .dataL {
+                          color: #999;
+                          font-size: 14px;
+                        }
+                        .dataR {
+                          display: flex;
+                          justify-content: flex-end;
+                          margin-right: 8px;
+                          color: #999999;
+                        }
+                      }
+                      .dataTe {
+                        padding-top: 10px;
+                      }
+                      .textRt {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 8px;
+                        .myBtn1 {
+                          height: 30px;
+                          border-radius: 5px;
+                          color: #4e5969;
+                        }
+
+                        .myBtn {
+                          height: 30px;
+                          background-color: #4a3aff;
+                          border-radius: 5px;
+                          color: #fff;
+                        }
+                        .myBtn:hover {
+                          background-color: #6d60f7;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -1948,6 +3488,422 @@ export default {
         width: 100%;
         height: 100%;
         border-radius: 25px;
+      }
+    }
+  }
+}
+.myModalZ {
+  background-color: #f7f8fa;
+  overflow: hidden;
+  scrollbar-width: none; /* 隐藏滚动条 */
+  .topB {
+    width: 100%;
+    height: 900px;
+    background-color: #f7f8fa;
+    padding: 20px;
+    overflow: hidden;
+    scrollbar-width: none; /* 隐藏滚动条 */
+    .boxTop {
+      width: 100%;
+      height: 80px;
+      line-height: 80px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #fff;
+      box-shadow: 0 1px 6px #0000000d;
+      padding: 0 20px;
+      border-radius: 10px;
+      .title {
+        color: #333;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .btn {
+        display: flex;
+        justify-content: flex-end;
+
+        .myBtn {
+          height: 35px;
+          width: 35px;
+          background-color: #4a3aff;
+          border-radius: 6px;
+          color: #fff;
+          margin-left: 15px;
+        }
+        .myBtn:hover {
+          background-color: #6d60f7;
+        }
+      }
+    }
+    .box {
+      width: 100%;
+      height: 760px;
+      overflow: hidden scroll;
+      scrollbar-width: none; /* 隐藏滚动条 */
+      position: relative;
+      margin-top: 20px;
+
+      .boxLi {
+        width: 100%;
+        height: 130px;
+        margin: 0 auto 15px;
+        display: flex;
+        justify-content: space-between;
+        .li {
+          height: 130px;
+          width: calc(20% - 10px);
+          background-color: #fff;
+          padding: 16px;
+          box-shadow: 0 1px 6px #0000000d;
+          border-radius: 8px;
+          .title {
+            color: #666;
+            font-size: 16px;
+            text-align: left;
+          }
+          .content {
+            color: #333;
+            font-size: 30px;
+            text-align: left;
+          }
+          .bottom {
+            padding: 0px 10px;
+            border-radius: 25px;
+            width: 50%;
+            background-color: #d3eadd;
+            text-align: center;
+          }
+        }
+      }
+      .qus {
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 1px 6px #0000000d;
+        padding: 40px 20px;
+        border-radius: 10px;
+        .title {
+          color: #333;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .select {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          :deep(.arco-select-view-single) {
+            width: 150px;
+            height: 34px;
+            border: 1px solid rgb(224, 224, 224);
+            margin-top: 13px;
+            margin-right: 12px;
+            border-radius: 5px;
+            background-color: #fff;
+          }
+        }
+        .emptyS {
+          width: 100%;
+          height: 240px;
+          background-color: #fff;
+        }
+      }
+      .qum {
+        margin-bottom: 15px;
+      }
+    }
+    .vR {
+      width: 100%;
+      height: 760px;
+      overflow: hidden;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-bottom: 400px;
+      .pl-top {
+        width: 100%;
+        height: 312px;
+        display: flex;
+        justify-content: space-between;
+        .pl-left {
+          width: 180px;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          .plLeftT {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+            height: 60px;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            .ge {
+              width: 3px;
+              height: 15px;
+              background-color: #4a3aff;
+              margin-top: 22.5px;
+            }
+            .myBtn {
+              height: 32px;
+              width: 32px;
+              background-color: #4a3aff;
+              border-radius: 6px;
+              color: #fff;
+            }
+            .myBtn:hover {
+              background-color: #6d60f7;
+            }
+          }
+          .plLeftZ {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+            height: 110px;
+            padding: 24px;
+            .title {
+              font-size: 16px;
+              color: #999;
+            }
+            .num {
+              color: #333;
+              font-size: 30px;
+            }
+          }
+          .plLeftR {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+            height: 110px;
+            padding: 24px;
+            .title {
+              font-size: 16px;
+              color: #999;
+            }
+            .num {
+              color: #333;
+              font-size: 30px;
+            }
+          }
+        }
+        .pl-right {
+          width: calc(100% - 196px);
+          height: 100%;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 16px 24px;
+          position: relative;
+          .title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 700;
+          }
+          .jdt {
+            position: absolute;
+            top: 130px;
+            left: -40px;
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+            transform: rotate(90deg); /* 旋转90度 */
+            line-height: 30px;
+            .fux {
+              display: inline-block;
+              color: rgb(255, 0, 132);
+              font-size: 12px;
+              transform: translateY(-4px) rotate(270deg);
+            }
+            .zxi {
+              display: inline-block;
+              color: #0672ff;
+              font-size: 12px;
+              transform: translateY(-4px) rotate(270deg);
+            }
+            .up-icon {
+              color: rgb(255, 0, 132);
+            }
+            .down-icon {
+              color: #0672ff;
+            }
+          }
+          .imgPl {
+            width: 360px;
+            display: block;
+            margin-left: 100px;
+          }
+        }
+      }
+      .pl-bottom {
+        margin-top: 16px;
+        width: 100%;
+        height: 830px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px 15px;
+        overflow: hidden;
+
+        .myCon {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          height: 32px;
+          line-height: 32px;
+          font-size: 12px;
+          .myConL {
+            font-size: 14px;
+            color: #333;
+            font-weight: 700;
+          }
+          .fy {
+            display: flex;
+            justify-content: flex-end;
+            color: #333;
+            font-size: 14px;
+
+            :deep(.arco-select-view-single) {
+              width: 120px;
+              height: 30px;
+              line-height: 30px;
+              border: none;
+              background-color: #fff;
+            }
+          }
+        }
+        .plAll {
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          margin-top: 10px;
+          .myBtn {
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            padding: 0 25px;
+            border-radius: 5px;
+            border: 1px solid #e6e6e6;
+            color: #333;
+            font-size: 14px;
+          }
+          .myBtn:hover {
+            background-color: #ebf3ff;
+            border: 1px solid #388eff;
+            color: #388eff;
+          }
+          .myBtn1 {
+            background-color: #ebf3ff;
+            border: 1px solid #388eff;
+            color: #388eff;
+          }
+        }
+        :deep(.arco-textarea) {
+          border: 1px solid #dee0e3;
+          background-color: #fff;
+          border-radius: 10px;
+          height: 180px;
+        }
+        .bt {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 20px;
+          .myBtn {
+            width: 100px;
+            height: 40px;
+            background-color: #4a3aff;
+            padding: 0 25px;
+            border-radius: 8px;
+            color: #fff;
+          }
+          .myBtn:hover {
+            background-color: #6d60f7;
+          }
+        }
+        .contentP {
+          width: 100%;
+          margin-top: 20px;
+          height: 600px;
+          overflow: hidden auto;
+          padding: 20px 0 50px 0;
+          scrollbar-width: none; /* 隐藏滚动条 */
+          .contentText {
+            width: 100%;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: flex-start;
+            .activeImg {
+              margin-right: 12px;
+              width: 40px;
+              height: 40px;
+              border-radius: 25px;
+            }
+            .conRg {
+              width: calc(100% - 52px);
+              padding: 0 10px 0 0;
+              .title {
+                text-align: left;
+                font-size: 17px;
+                color: #333;
+                font-weight: 700;
+                .zuz {
+                  display: inline-block;
+                  background-color: #ebf3ff;
+                  padding: 5px 10px;
+                  border-radius: 5px;
+                  color: #338bff;
+                  font-size: 12px;
+                  margin-left: 10px;
+                }
+              }
+              .content {
+                text-align: left;
+                padding: 12px 0;
+                min-height: 20px;
+                max-height: 80px;
+                display: block;
+                overflow: hidden auto;
+                font-size: 14px;
+                color: #1d2129;
+              }
+              .data {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+                .dataL {
+                  color: #999;
+                  font-size: 14px;
+                }
+                .dataR {
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-right: 8px;
+                  color: #999999;
+                }
+              }
+              .dataTe {
+                padding-top: 10px;
+              }
+              .textRt {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 8px;
+                .myBtn1 {
+                  height: 30px;
+                  border-radius: 5px;
+                  color: #4e5969;
+                }
+
+                .myBtn {
+                  height: 30px;
+                  background-color: #4a3aff;
+                  border-radius: 5px;
+                  color: #fff;
+                }
+                .myBtn:hover {
+                  background-color: #6d60f7;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

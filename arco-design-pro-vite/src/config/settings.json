@@ -2,7 +2,7 @@
   "theme": "light",
   "colorWeak": false,
   "navbar": true,
-  "menu": true,
+  "menu": false,
   "topMenu": false,
   "hideMenu": false,
   "menuCollapse": false,
